@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Models\Role;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
-class ProductController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreRoleRequest $request)
     {
         //
     }
@@ -35,17 +35,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Role $role)
     {
-        return view('products.show', [
-            'product' => $product
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Role $role)
     {
         //
     }
@@ -53,7 +51,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         //
     }
@@ -61,7 +59,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Role $role)
     {
         //
     }

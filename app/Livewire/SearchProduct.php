@@ -2,13 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\Product;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class SearchProduct extends Component
 {
-
+    
     public $query;
-    public $products;
+    public $categories;
 
     public function mount()
     {
@@ -18,18 +20,26 @@ class SearchProduct extends Component
     public function resetInput()
     {
         $this->query = '';
-        $this->products = [];
+        $this->categories = [];
     }
 
     public function updatedQuery()
     {
-        $this->products = array_filter(['1', '2', '3', '4', '5'], function ($element) {
-            return $element === $this->query;
-        });
+        if ($this->query) {
+            $this->categories = Product::select('categoria')->where('categoria', 'like', '%' . $this->query . '%')->distinct('categoria')->get()->toArray();
+            return;
+        }
+        $this->categories = [];
     }
 
     public function render()
     {
         return view('livewire.search-product');
+    }
+
+    public function search($term = "")
+    {
+        $this->query = $term;
+        return $this->redirect('search/' . $this->query);
     }
 }

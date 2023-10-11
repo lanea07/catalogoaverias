@@ -1,21 +1,31 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
-    <input
-        class="form-control form-control-lg"
-        id="emailAddress"
-        type="text"
-        placeholder="Email Address"
-        data-sb-validations="required,email" 
-        wire:model.live="query"
-        wire:keydown.escape="resetInput"/>
+    <form class="form-subscribe" id="contactForm" wire:submit="search">
+        <div class="row">
+            <div class="col">
 
-    <ul class="list-group">
-        @forelse ($products as $product)
-            <li class="list-group-item">{{ $product }}</li>
-        @empty
-            @if($query)
-                <li class="list-group-item">No hay Items</li>
-            @endif
-        @endforelse
-    </ul>
+                <div class="form-floating">
+                    <input class="form-control form-control-lg" id="categories-search" type="text"
+                        placeholder="Categorias..." wire:model.live="query" wire:keydown.escape="resetInput" />
+                    <label class="form-label" for="categories-search">Categorias...</label>
+                </div>
+                
+                    <ul class="list-group" id="dropdown-search">
+                        @forelse ($categories as $category)
+                            <li wire:click="search('{{ $category['categoria'] }}')"
+                                class="list-group-item link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                {{ $category['categoria'] }}</li>
+                        @empty
+                            @if ($query)
+                                <li class="list-group-item">No hay Items</li>
+                            @endif
+                        @endforelse
+                    </ul>
+                
+            </div>
+            <div class="col-auto">
+                <button wire:click="search('{{ $query }}')" class="btn btn-primary btn-lg" id="submitButton"
+                    type="button">Buscar</button>
+            </div>
+        </div>
+    </form>
 </div>

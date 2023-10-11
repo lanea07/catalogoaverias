@@ -13,9 +13,26 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('description');
-            $table->double('cost');
+            $table->double('ticket')->unique();
+            $table->text('queue');
+            $table->text('ean');
+            $table->text('negocio')->nullable();
+            $table->text('departamento')->nullable();
+            $table->text('grupo')->nullable();
+            $table->text('categoria')->nullable();
+            $table->text('subcategoria')->nullable();
+            $table->text('descripcion')->nullable();
+            $table->text('referencia')->nullable();
+            $table->text('marca')->nullable();
+            $table->text('medida')->nullable();
+            $table->text('color')->nullable();
+            $table->text('costo')->nullable();
+            $table->text('nit_proveedor')->nullable();
+            $table->text('razon_social_proveedor')->nullable();
+            $table->text('fecha_inicio_gestion')->nullable();
+            $table->text('dias_transcurridos')->nullable();
+            $table->text('img_path')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }
