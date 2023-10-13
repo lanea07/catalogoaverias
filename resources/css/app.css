@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 header.masthead {
     position: relative;
     background-color: #343a40;

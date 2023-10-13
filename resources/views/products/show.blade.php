@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<x-app-layout>
 
 @section('content')
     @include('partials.navbar')
@@ -188,4 +188,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

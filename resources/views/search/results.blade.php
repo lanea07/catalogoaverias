@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
+
     @include('partials.navbar')
     @include('partials.offcanvas')
 
@@ -64,4 +64,4 @@
             @endforeach
         </div>
     </div>
-@endsection()
+</x-app-layout>

@@ -1,8 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
-    @include('partials.navbar')
-    @include('partials.offcanvas')
     <!-- Masthead-->
     <header class="masthead">
         <div class="container position-relative">
@@ -49,4 +46,4 @@
             </div>
         </div>
     </footer>
-@endsection
+</x-app-layout>
