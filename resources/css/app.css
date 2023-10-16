@@ -62,3 +62,6 @@ footer.footer {
     background-color: rgba(0, 0, 0, 0.01);
     border-radius: 14px;
 }
+body {
+    min-height: 100vh;
+}

@@ -20,5 +20,13 @@ class UserSeeder extends Seeder
             'valid_id' => 1
         ]);
         $user->roles()->attach(1);
+
+        $user = User::create([
+            'name' => 'Juan Camilo Soto Pineda',
+            'password' => 'Marianita.07',
+            'email' => 'juancamilo.soto@outlook.com',
+            'valid_id' => 1
+        ]);
+        $user->roles()->attach(1);
     }
 }
