@@ -8,6 +8,12 @@ use App\Http\Requests\UpdateRoleRequest;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('roles:administrador', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      */

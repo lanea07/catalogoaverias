@@ -26,11 +26,11 @@ return new class extends Migration
             $table->text('marca')->nullable();
             $table->text('medida')->nullable();
             $table->text('color')->nullable();
-            $table->text('costo')->nullable();
+            $table->double('costo');
             $table->text('nit_proveedor')->nullable();
             $table->text('razon_social_proveedor')->nullable();
-            $table->text('fecha_inicio_gestion')->nullable();
-            $table->text('dias_transcurridos')->nullable();
+            $table->text('fecha_inicio_gestion');
+            $table->text('dias_transcurridos');
             $table->text('img_path')->nullable();
             $table->text('observaciones')->nullable();
             $table->timestamps();

@@ -39,21 +39,8 @@
 
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+    <script src="https://kit.fontawesome.com/a3c1770e9c.js" crossorigin="anonymous"></script>
 
 </body>
 
 </html>
-{{-- 
-<body class="bg-secondary-subtle container d-flex align-items-center justify-content-center" style="height: 100vh">
-    <div class="rounded shadow bg-body-tertiary">
-        <div class="my-2 d-flex align-items-center justify-content-center">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" width="60" height="48"/>
-            </a>
-        </div>
-
-        <div class="p-5 rounded">
-            {{ $slot }}
-        </div>
-    </div>
-</body> --}}

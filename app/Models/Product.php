@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'ticket',
+        'queue',
         'ean',
         'negocio',
         'departamento',
@@ -27,6 +28,7 @@ class Product extends Model
         'razon_social_proveedor',
         'fecha_inicio_gestion',
         'dias_transcurridos',
-        'img_path'
+        'img_path',
+        'observaciones'
     ];
 }

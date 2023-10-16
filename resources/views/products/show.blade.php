@@ -201,6 +201,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="align-items-center d-flex flex-column-reverse flex-md-row justify-content-between">
+                    @auth
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="{{ route('products.edit', $product) }}">Editar</a>
+                            <a class="btn btn-danger" href="#" onclick="document.getElementById('delete-directorio').submit()">Eliminar</a>
+                        </div>
+                        <form class="d-none" id="delete-directorio" action="{{ route('products.destroy', $product) }}" method="post">
+                            @csrf @method('DELETE')
+                        </form>
+                    @endauth
+                </div>
+
             </div>
         </div>
     </div>
