@@ -24,7 +24,7 @@
                 <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ route('products.index') }}"><i class="fa-solid fa-list-ol me-2"></i>{{ __('List') }}</a>
               </li>
               <li class="list-group-item">
-                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#"><i class="fa-solid fa-file-import me-2"></i>{{ __('Massive Upload') }}</a>
+                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ route('massive-upload') }}"><i class="fa-solid fa-file-import me-2"></i>{{ __('Massive Upload') }}</a>
               </li>
             </ul>
             

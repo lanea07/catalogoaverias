@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -89,5 +91,17 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    /*Custom Methods*/
+    public function massive_upload()
+    {
+        return view('products.massive-import');
+    }
+
+    public function process_massive_upload()
+    {
+        Excel::import(new ProductsImport, request()->file('file'));
+        return redirect()->route('massive-upload')->with('status', __('Massive upload processed succesfully.'));
     }
 }

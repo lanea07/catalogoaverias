@@ -53,7 +53,7 @@
                             </ul>
                         </div>
                     @else
-                        <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                        <a class="nav-link d-lg-none" href="{{ route('login') }}">Iniciar Sesión</a>
                     </li>
                 @endauth
             </ul>
@@ -83,7 +83,7 @@
                     </form>
                 </ul>
             @else
-                <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                <a class="nav-link d-none d-lg-block" href="{{ route('login') }}">Iniciar Sesión</a>
             </div>
         @endauth
 
