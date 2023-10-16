@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('roles:Admin');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('products.index');
     }
 
     /**
@@ -21,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create', [
+            'product' => new Product
+        ]);
     }
 
     /**
@@ -29,7 +39,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $this->authorize('create', Product::class);
+        $product = $request->validated();
+        try {
+            $product = Product::create($product);
+        } catch (\Throwable $th) {
+            return redirect()->route('products.create', [
+                'product' => $product
+            ])->with('status', $th->getMessage());
+        }
+        return redirect()->route('products.show', [
+            'product' => $product->id
+        ])->with('status', __('Saved.'));
     }
 
     /**
@@ -47,7 +68,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', [
+            'product' => $product
+        ]);
     }
 
     /**
@@ -63,6 +86,22 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+            $product->delete();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    /*Custom Methods*/
+    public function massive_upload()
+    {
+        return view('products.massive-import');
+    }
+
+    public function process_massive_upload()
+    {
+        Excel::import(new ProductsImport, request()->file('file'));
+        return redirect()->route('massive-upload')->with('status', __('Massive upload processed succesfully.'));
     }
 }
