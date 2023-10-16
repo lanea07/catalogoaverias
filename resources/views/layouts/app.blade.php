@@ -1,55 +1,59 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('partials.navbar')
-            @include('partials.offcanvas')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
-</html>
-
-{{-- <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Catálogo de Venta Interna</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Catalogo de Averías') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
     @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
     @livewireStyles
+
 </head>
-<body>
-    @yield('content')
+
+<body class="d-flex flex-column overflow-hidden min-vh-100 vh-100">
+
+    @include('partials.navbar')
+    @include('partials.offcanvas')
+
+    <!-- Page Heading -->
+    @if (isset($header))
+        <header class="ps-4 py-2 text-secondary">
+            {{ $header }}
+        </header>
+    @endif
+
+    <!-- Page Content -->
+    <main class=" flex-grow-1 overflow-auto">
+        {{ $slot }}
+    </main>
+
+    @include('partials.footer')
 
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
 </body>
-</html> --}}
+
+</html>
+{{-- 
+<body class="bg-secondary-subtle container d-flex align-items-center justify-content-center" style="height: 100vh">
+    <div class="rounded shadow bg-body-tertiary">
+        <div class="my-2 d-flex align-items-center justify-content-center">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" width="60" height="48"/>
+            </a>
+        </div>
+
+        <div class="p-5 rounded">
+            {{ $slot }}
+        </div>
+    </div>
+</body> --}}

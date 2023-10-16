@@ -1,8 +1,6 @@
 <x-app-layout>
 
-@section('content')
-    @include('partials.navbar')
-    @include('partials.offcanvas')
+
     <div class="container mt-5">
         <h1>{{ $product->descripcion }}</h1>
         <div class="row my-4">
@@ -37,18 +35,20 @@
                     </div>
                 @endif
             </div>
-            <div class="col-12 col-md-8 shadow-sm product-detail p-3">
+            <div class="col-12 col-md-8 shadow-sm product-detail p-3 bg-body-tertiary">
 
 
                 <ul class="nav nav-tabs" id="product-detail" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                            type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Ficha del
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">Ficha del
                             Producto</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Ticket
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab"
+                            aria-controls="profile-tab-pane" aria-selected="false">Ticket
                             Asociado</button>
                     </li>
                 </ul>
@@ -65,7 +65,8 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">Departamento: <small class="fw-normal">{{ $product->departamento }}</small></p>
+                                <p class="fw-bold">Departamento: <small
+                                        class="fw-normal">{{ $product->departamento }}</small></p>
                             </div>
                             <div class="col-6">
                                 <p class="fw-bold">Grupo: <small class="fw-normal">{{ $product->grupo }}</small></p>
@@ -73,18 +74,22 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">Categoría: <small class="fw-normal">{{ $product->categoria }}</small></p>
+                                <p class="fw-bold">Categoría: <small class="fw-normal">{{ $product->categoria }}</small>
+                                </p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">Subcategoría: <small class="fw-normal">{{ $product->subcategoria }}</small></p>
+                                <p class="fw-bold">Subcategoría: <small
+                                        class="fw-normal">{{ $product->subcategoria }}</small></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">Descripción: <small class="fw-normal">{{ $product->descripcion }}</small></p>
+                                <p class="fw-bold">Descripción: <small
+                                        class="fw-normal">{{ $product->descripcion }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">Referencia: <small class="fw-normal">{{ $product->referencia }}</small></p>
+                                <p class="fw-bold">Referencia: <small
+                                        class="fw-normal">{{ $product->referencia }}</small></p>
                             </div>
                         </div>
                         <div class="row">
@@ -100,89 +105,100 @@
                                 <p class="fw-bold">Color: <small class="fw-normal">{{ $product->color }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">Razón Social: <small class="fw-normal">{{ $product->razon_social_proveedor }}</small></p>
+                                <p class="fw-bold">Razón Social: <small
+                                        class="fw-normal">{{ $product->razon_social_proveedor }}</small></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">NIT Proveedor: <small class="fw-normal">{{ $product->nit_proveedor }}</small></p>
+                                <p class="fw-bold">NIT Proveedor: <small
+                                        class="fw-normal">{{ $product->nit_proveedor }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">Precio Original: <small class="fw-normal">{{ toCurrency($product->costo, 'COP') }}</small></p>
+                                <p class="fw-bold">Precio Original: <small
+                                        class="fw-normal">{{ toCurrency($product->costo, 'COP') }}</small></p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">Precio Actual: 
-                                  <small class="fw-normal">
-                                    @switch($product->dias_transcurridos)
-                                        @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                                            {{ toCurrency($product->costo, 'COP') }}
-                                        @break
+                                <p class="fw-bold">Precio Actual:
+                                    <small class="fw-normal">
+                                        @switch($product->dias_transcurridos)
+                                            @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
+                                                {{ toCurrency($product->costo, 'COP') }}
+                                            @break
 
-                                        @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                                            {{ toCurrency($product->costo * 0.8, 'COP') }}
-                                        @break
+                                            @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
+                                                {{ toCurrency($product->costo * 0.8, 'COP') }}
+                                            @break
 
-                                        @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                                            {{ toCurrency($product->costo * 0.5, 'COP') }}
-                                        @break
+                                            @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
+                                                {{ toCurrency($product->costo * 0.5, 'COP') }}
+                                            @break
 
-                                        @case($product->dias_transcurridos >= 90)
-                                            {{ toCurrency($product->costo * 0.2, 'COP') }}
-                                        @break
-                                      @endswitch
-                                  </small>
+                                            @case($product->dias_transcurridos >= 90)
+                                                {{ toCurrency($product->costo * 0.2, 'COP') }}
+                                            @break
+                                        @endswitch
+                                    </small>
                                 </p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">Antigüedad: <small class="fw-normal">{{ $product->dias_transcurridos }} días</small></p>
+                                <p class="fw-bold">Antigüedad: <small
+                                        class="fw-normal">{{ $product->dias_transcurridos }} días</small></p>
                             </div>
                         </div>
                         <div class="row">
-                          <div class="col-6">
-                            <p class="fw-bold">Descuento actual: 
-                              <small class="fw-normal">
-                                @switch($product->dias_transcurridos)
-                                @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                                    {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(0) }}
-                                    @break
-                                @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                                    {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.2)/$product->costo) }}
-                                    @break
-                                @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                                    {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.5)/$product->costo) }}
-                                    @break
-                                @case($product->dias_transcurridos >= 90)
-                                    {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.8)/$product->costo) }}
-                                    @break
-                                @endswitch
-                              </small>
-                            </p>
-                          </div>
+                            <div class="col-6">
+                                <p class="fw-bold">Descuento actual:
+                                    <small class="fw-normal">
+                                        @switch($product->dias_transcurridos)
+                                            @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
+                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(0) }}
+                                            @break
+
+                                            @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
+                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.2) / $product->costo) }}
+                                            @break
+
+                                            @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
+                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.5) / $product->costo) }}
+                                            @break
+
+                                            @case($product->dias_transcurridos >= 90)
+                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.8) / $product->costo) }}
+                                            @break
+                                        @endswitch
+                                    </small>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade mt-2" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                        tabindex="0">
+                    <div class="tab-pane fade mt-2" id="profile-tab-pane" role="tabpanel"
+                        aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
-                          <div class="col-6">
-                              <p class="fw-bold">Ticket #: <small class="fw-normal">{{ $product->ticket }}</small></p>
-                          </div>
-                          <div class="col-6">
-                              <p class="fw-bold">Tienda: <small class="fw-normal">{{ $product->queue }}</small></p>
-                          </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
-                            <p class="fw-bold">Fecha de la avería <small class="fw-normal">{{ $product->fecha_inicio_gestion }}</small></p>
+                            <div class="col-6">
+                                <p class="fw-bold">Ticket #: <small class="fw-normal">{{ $product->ticket }}</small>
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="fw-bold">Tienda: <small class="fw-normal">{{ $product->queue }}</small></p>
+                            </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium provident placeat voluptate nisi nam inventore distinctio deserunt, ad, ea dolores. Ducimus nulla soluta quis tenetur magni fuga dignissimos ratione.</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="fw-bold">Fecha de la avería <small
+                                        class="fw-normal">{{ $product->fecha_inicio_gestion }}</small></p>
+                            </div>
                         </div>
-                      </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium
+                                    provident placeat voluptate nisi nam inventore distinctio deserunt, ad, ea dolores.
+                                    Ducimus nulla soluta quis tenetur magni fuga dignissimos ratione.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

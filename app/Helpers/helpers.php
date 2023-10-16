@@ -33,4 +33,9 @@ if (!function_exists('toCurrency')) {
 
         return $formattedNumber;
     };
+
+    function setActive($routeName)
+    {
+        return request()->routeIs($routeName) ? 'active' : '';
+    }
 }

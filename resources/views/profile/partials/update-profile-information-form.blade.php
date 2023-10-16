@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-secondary">
             {{ __('Profile Information') }}
         </h2>
 
@@ -17,15 +17,19 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+        <div class="form-floating mb-3 col-8">
+            <input type="text" class="form-control" id="name" placeholder="name@example.com" name="name" value="{{ old('name', $user->name) }}">
+            <label for="name">{{ __('Name') }}</label>
+            {{-- <x-input-label for="name" :value="__('Name')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" /> --}}
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+        <div class="form-floating mb-3 col-8">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" value="{{ old('email', $user->email) }}">
+            <label for="email">{{ __('Email') }}</label>
+            {{-- <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" /> --}}
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -56,7 +60,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    class="fw-light"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
