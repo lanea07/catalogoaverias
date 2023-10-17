@@ -60,6 +60,15 @@
                     @endforeach
                 </tbody>
             </table>
+            
+        </div>
+        <div class="d-flex flex-row align-items-center text-warning">
+            <h1>
+                <i class="fa-solid fa-circle-info fa-fade me-2"></i>
+            </h1>
+            <p class="d-flex flex-row">
+                {{ __('If a ticket exists already in database, all of its properties will be updated when processing massive upload') }}
+            </p>
         </div>
         @if ($excelArray)
             <x-primary-button>Subir</x-primary-button>

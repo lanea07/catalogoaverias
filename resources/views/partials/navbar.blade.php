@@ -12,24 +12,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasWithBothOptions" role="button"
-                        aria-controls="offcanvasWithBothOptions">
-                        {{ __('Menu') }}
-                    </a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasWithBothOptions" role="button"
+                            aria-controls="offcanvasWithBothOptions">
+                            {{ __('Menu') }}
+                        </a>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ setActive('home') }}" aria-current="page"
                         href="/">{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ setActive('search') }}" href="#">{{ __('Categories') }}</a>
+                    <a class="nav-link {{ setActive('search') }}" href="{{ route('categories') }}">{{ __('Categories') }}</a>
                 </li>
                 @auth
                     <li class="nav-item dropdown d-lg-none">
                         <div class="">
-                            <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
 

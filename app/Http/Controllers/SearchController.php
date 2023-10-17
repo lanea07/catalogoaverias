@@ -21,4 +21,9 @@ class SearchController extends Controller
             'allProducts' => $allProducts
         ]);
     }
+
+    public function categories()
+    {
+        return view('search.categories');
+    }
 }

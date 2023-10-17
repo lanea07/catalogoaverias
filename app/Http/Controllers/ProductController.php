@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductsDataTable;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -19,9 +20,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ProductsDataTable $dataTable)
     {
-        return view('products.index');
+        return $dataTable->render('products.index');
     }
 
     /**

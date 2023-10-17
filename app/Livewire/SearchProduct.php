@@ -37,8 +37,11 @@ class SearchProduct extends Component
         return view('livewire.search-product');
     }
 
-    public function search()
+    public function search($term = "")
     {
+        if ($term) {
+            $this->query = $term;
+        }
         return $this->redirect('search/' . $this->query);
     }
 }

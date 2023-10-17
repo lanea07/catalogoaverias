@@ -59,9 +59,9 @@
 </div>
 
 <div class="form-floating mb-3">
-    <input type="text" class="form-control @error('reference') is-invalid @else border-0 @enderror" id="reference"
-        placeholder="reference" name="reference" value="{{ old('reference', $product->reference) }}">
-    <label for="reference">{{ __('Reference') }}</label>
+    <input type="text" class="form-control @error('referencia') is-invalid @else border-0 @enderror" id="referencia"
+        placeholder="referencia" name="referencia" value="{{ old('referencia', $product->referencia) }}">
+    <label for="referencia">{{ __('Reference') }}</label>
 </div>
 
 <div class="form-floating mb-3">
