@@ -69,3 +69,13 @@ body {
     max-height: 400px;
     overflow: scroll;
 }
+table.dataTable td.dt-control:before {
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f101";
+}
+
+table.dataTable tr.dt-hasChild td.dt-control:before {
+    content: "\f103";
+}
