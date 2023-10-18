@@ -70,7 +70,7 @@ body {
     overflow: scroll;
 }
 table {
-    width: auto !important;
+    width: 100% !important;
 }
 table.dataTable td.dt-control:before {
     display: inline-block;
