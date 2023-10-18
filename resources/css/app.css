@@ -69,6 +69,9 @@ body {
     max-height: 400px;
     overflow: scroll;
 }
+table {
+    width: auto !important;
+}
 table.dataTable td.dt-control:before {
     display: inline-block;
     font-family: "Font Awesome 5 Free";
