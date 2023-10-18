@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ProductsDataTable extends DataTable
@@ -44,7 +42,7 @@ class ProductsDataTable extends DataTable
             ->setTableId('products-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
@@ -55,9 +53,44 @@ class ProductsDataTable extends DataTable
                 Button::make('reset'),
                 Button::make('reload')
             ])
-            ->parameters([
-                'responsive' => true,
-            ]);
+            ->parameters(
+                [
+                    'responsive' => [
+                        'details' => [
+                            'type' => 'column',
+                            'target' => 'tr',
+                            'renderer' => 'function (api, rowIdx, columns) {
+                                let data = columns.map((col, i) => {
+                                    return col.hidden
+                                        ? \'<tr data-dt-row="\' +
+                                                col.rowIndex +
+                                                \'" data-dt-column="\' +
+                                                col.columnIndex +
+                                                \'">\' +
+                                                \'<td>\' +
+                                                col.title +
+                                                \':\' +
+                                                \'</td> \' +
+                                                \'<td>\' +
+                                                col.data +
+                                                \'</td>\' +
+                                                \'</tr>\'
+                                        : \'\';
+                                }).join(\'\');
+                 
+                                let table = document.createElement(\'table\');
+                                table.innerHTML = data;
+                 
+                                return data ? table : false;
+                            }',
+                        ],
+                    ],
+                    // 'columnDefs' => [
+                    //     ['responsivePriority' => 0, 'targets' => [0, 1, 2, 3, 4]],
+                    //     ['responsivePriority' => 1, 'targets' => [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
+                    // ]
+                ]
+            );
     }
 
     /**
@@ -70,7 +103,8 @@ class ProductsDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
-                ->addClass('dt-control'),
+                ->addClass('dt-control')
+                ->title(__('Details')),
             Column::make('ticket'),
             Column::make('queue'),
             Column::make('ean'),
@@ -82,6 +116,13 @@ class ProductsDataTable extends DataTable
             Column::make('descripcion'),
             Column::make('referencia'),
             Column::make('marca'),
+            Column::make('medida'),
+            Column::make('color'),
+            Column::make('costo'),
+            Column::make('nit_proveedor'),
+            Column::make('razon_social_proveedor'),
+            Column::make('fecha_inicio_gestion'),
+            Column::make('dias_transcurridos'),
             Column::make(__('Options'))
                 ->render('\'<div class="dropdown"><a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">' . __('Options') . '</a><ul class="dropdown-menu"><li><a target="_blank" class="dropdown-item" href="products/\' + full.id + \'">' . __('View') . '</a></li><li><a target="_blank" class="dropdown-item" href="products/\' + full.id + \'/edit">' . __('Edit') . '</a></li></ul></div>\''),
             // ->render('\'<a href="products/\' + full.id + \'">Detalles</a>\''),
