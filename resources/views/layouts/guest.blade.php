@@ -16,13 +16,11 @@
     </head>
     <body class="bg-secondary-subtle container d-flex align-items-center justify-content-center">
         <div class="rounded shadow bg-body-tertiary">
-            <div class="my-2 d-flex align-items-center justify-content-center">
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" width="60" height="48"/>
-                </a>
+            <div class="py-5 d-flex align-items-center justify-content-center">
+                    <x-application-logo height="80"/>
             </div>
 
-            <div class="p-5 rounded">
+            <div class="px-5 pb-5 rounded">
                 {{ $slot }}
             </div>
         </div>

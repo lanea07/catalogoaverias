@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex px-5 sticky-top">
 
         <a class="navbar-brand" href="/">
-            <x-application-logo class="d-inline-block align-text-top" width="30" height="24" />
+            <x-application-logo class="d-inline-block align-text-top" height="30"/>
             {{ config('app.name', 'Catalogo de Averías') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

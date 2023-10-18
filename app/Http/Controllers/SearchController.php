@@ -24,6 +24,12 @@ class SearchController extends Controller
 
     public function categories()
     {
-        return view('search.categories');
+        $categories = Product::distinct('categoria')
+        ->select('categoria')
+        ->orderBy('categoria')
+        ->get();
+        return view('search.categories', [
+            'categories' => $categories
+        ]);
     }
 }
