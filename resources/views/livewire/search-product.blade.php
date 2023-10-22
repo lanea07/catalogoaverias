@@ -10,15 +10,23 @@
                 </div>
                 
                     <ul class="list-group" id="dropdown-search">
-                        @forelse ($categories as $category)
-                            <li wire:click="search('{{ $category['categoria'] }}')"
-                                class="list-group-item link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                {{ $category['categoria'] }}</li>
-                        @empty
-                            @if ($query)
-                                <li class="list-group-item">{{ __('No Items Found') }}</li>
-                            @endif
-                        @endforelse
+                        <li wire:loading class="list-group-item"><p>Loading...</li>
+                        @if (!$error)
+                            @forelse ($categories as $category)
+                                <li wire:click="search('{{ $category['categoria'] }}')"
+                                    class="list-group-item link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                    {{ $category['categoria'] }}</li>
+                            @empty
+                                @if ($error)
+                                    <li class="list-group-item">{{ __('An error has occurred, please try again later') }}</li>
+                                @endif
+                                @if ($query)
+                                    <li class="list-group-item">{{ __('No Items Found') }}</li>
+                                @endif
+                            @endforelse
+                        @else
+                            <li class="list-group-item text-danger">{{ $error }}</li>
+                        @endif
                     </ul>
                 
             </div>

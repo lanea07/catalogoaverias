@@ -1,8 +1,8 @@
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex px-5 sticky-top">
+    <nav class="navbar bd-navbar navbar-expand-lg bg-body-tertiary d-flex px-5 sticky-top">
 
         <a class="navbar-brand" href="/">
-            <x-application-logo class="d-inline-block align-text-top" height="30"/>
+            <x-application-logo class="d-inline-block align-text-top" height="30" />
             {{ config('app.name', 'Catalogo de Averías') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -11,7 +11,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+
+            <ul class="navbar-nav me-auto">
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasWithBothOptions" role="button"
@@ -25,69 +26,93 @@
                         href="/">{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ setActive('search') }}" href="{{ route('categories') }}">{{ __('Categories') }}</a>
+                    <a class="nav-link {{ setActive('search') }}"
+                        href="{{ route('categories') }}">{{ __('Categories') }}</a>
                 </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <button
+                        class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center "
+                        id="bd-theme" type="button" aria-expanded="true" data-bs-toggle="dropdown"
+                        data-bs-display="static" aria-label="Toggle theme (dark)">
+                        <svg class="bi my-1 theme-icon-active">
+                            <use href="#moon-stars-fill"></use>
+                        </svg>
+                        <span class="d-lg-none ms-2" id="bd-theme-text">{{ __('Toggle theme') }}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" data-bs-popper="static">
+                        <li>
+                            <button type="button" class="align-items-center d-flex dropdown-item"
+                                data-bs-theme-value="light" aria-pressed="false">
+                                <svg class="bi me-2 opacity-50 theme-icon">
+                                    <use href="#sun-fill"></use>
+                                </svg>
+                                {{ __('Light') }}
+                                <svg class="bi ms-auto d-none">
+                                    <use href="#check2"></use>
+                                </svg>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="active align-items-center d-flex dropdown-item"
+                                data-bs-theme-value="dark" aria-pressed="false">
+                                <svg class="bi me-2 opacity-50 theme-icon">
+                                    <use href="#moon-stars-fill"></use>
+                                </svg>
+                                {{ __('Dark') }}
+                                <svg class="bi d-none ms-auto">
+                                    <use href="#check2"></use>
+                                </svg>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item d-flex align-items-center"
+                                data-bs-theme-value="auto" aria-pressed="false">
+                                <svg class="bi me-2 opacity-50 theme-icon">
+                                    <use href="#circle-half"></use>
+                                </svg>
+                                {{ __('Auto') }}
+                                <svg class="bi ms-auto d-none">
+                                    <use href="#check2"></use>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
                 @auth
-                    <li class="nav-item dropdown d-lg-none">
-                        <div class="">
-                            <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                            </li>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
 
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
-                                    </a>
-                                </li>
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </a>
-
-                                </form>
-                            </ul>
-                        </div>
-                    @else
-                        <a class="nav-link d-lg-none" href="{{ route('login') }}">Iniciar Sesión</a>
-                    </li>
+                            </form>
+                        </ul>
+                    </div>
+                @else
+                    <a class="nav-link d-none d-lg-block" href="{{ route('login') }}">{{ __('Log in') }}</a>
                 @endauth
             </ul>
+
         </div>
-
-        @auth
-            <div class="d-none dropdown d-lg-block">
-                <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    {{ Auth::user()->name }}
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                            {{ __('Profile') }}
-                        </a>
-                    </li>
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </a>
-
-                    </form>
-                </ul>
-            @else
-                <a class="nav-link d-none d-lg-block" href="{{ route('login') }}">Iniciar Sesión</a>
-            </div>
-        @endauth
-
     </nav>
 </header>

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Product;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class SearchProduct extends Component
@@ -11,6 +10,7 @@ class SearchProduct extends Component
     
     public $query;
     public $categories;
+    public $error;
 
     public function mount()
     {
@@ -26,7 +26,13 @@ class SearchProduct extends Component
     public function updatedQuery()
     {
         if ($this->query) {
-            $this->categories = Product::select('categoria')->where('categoria', 'like', '%' . $this->query . '%')->distinct('categoria')->get()->toArray();
+            try {
+                $this->error = "";
+                $this->categories = [];
+                $this->categories = Product::select('categoria')->where('categoria', 'like', '%' . $this->query . '%')->distinct('categoria')->get()->toArray();
+            } catch (\Throwable $th) {
+                $this->error = __('An error has occurred, please try again later');
+            }
             return;
         }
         $this->categories = [];

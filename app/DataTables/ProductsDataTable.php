@@ -80,6 +80,8 @@ class ProductsDataTable extends DataTable
                  
                                 let table = document.createElement(\'table\');
                                 table.innerHTML = data;
+                                table.classList.add(\'table\');
+                                table.classList.add(\'table-hover\');
                  
                                 return data ? table : false;
                             }',
