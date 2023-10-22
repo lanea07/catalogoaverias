@@ -32,3 +32,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 import 'bootstrap';
+import 'laravel-datatables-vite';
+import './dataTables.responsive';
+// import './responsive.dataTables';
