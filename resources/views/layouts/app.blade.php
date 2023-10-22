@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
     @livewireStyles
 

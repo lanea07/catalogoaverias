@@ -1,7 +1,7 @@
 import './bootstrap';
 import 'laravel-datatables-vite';
-import './responsive.dataTables';
 import './dataTables.responsive';
+import './responsive.dataTables';
 
 import Alpine from 'alpinejs';
 
