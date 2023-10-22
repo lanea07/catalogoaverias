@@ -31,6 +31,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
+import { createRequire } from 'module';
+const require = createRequire( import.meta.url );
+
 import 'bootstrap';
 import 'laravel-datatables-vite';
 import './dataTables.responsive';
