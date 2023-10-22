@@ -44,6 +44,10 @@ class ProductController extends Controller
         $product = $request->validated();
         try {
             $product = Product::create($product);
+
+            /* Build images save feature here */
+            // $path = request()->file('filePoliticas')->store('politics', 'google');
+
         } catch (\Throwable $th) {
             return redirect()->route('products.create', [
                 'product' => $product
@@ -80,6 +84,11 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         //
+
+        // if ($benefit->politicas_path) {
+        //     $deleted = Storage::disk('google')->delete($benefit->getAttributes()['politicas_path']);
+        // }
+        // $path = request()->file('filePoliticas')->store('politics', 'google');
     }
 
     /**

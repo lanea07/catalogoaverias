@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Casts\ExcelNumberDateToString;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +30,9 @@ class Product extends Model
         'dias_transcurridos',
         'img_path',
         'observaciones'
+    ];
+
+    protected $casts = [
+        'politicas_path' => GooglePath::class,
     ];
 }

@@ -31,7 +31,7 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mx-lg-3">
                 <li class="nav-item dropdown">
                     <button
                         class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center "
