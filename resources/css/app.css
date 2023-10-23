@@ -88,7 +88,7 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
 }
 
 .bi {
-    width: 1em;
+    width: 1.5em;
     height: 1em;
     vertical-align: -.125em;
     fill: currentcolor;

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="__('Categories')">
 
     <div class="container pt-5 ">
         <div class="row" data-masonry='{"percentPosition": true }'>

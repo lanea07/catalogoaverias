@@ -8,7 +8,7 @@
                         <li class="list-inline-item"><a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#!">About</a></li>
                         <li class="list-inline-item">⋅</li>
                     </ul> --}}
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Experiencia del Cliente - Almacenes Flamingo {{ \Carbon\Carbon::now()->format('Y') }}</p>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; {{ __('Customer Experience') }} - Almacenes Flamingo {{ \Carbon\Carbon::now()->format('Y') }}</p>
                 </div>
             </div>
         </div>

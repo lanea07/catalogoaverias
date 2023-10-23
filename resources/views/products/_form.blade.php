@@ -113,7 +113,7 @@
     <input type="number" class="form-control @error('dias_transcurridos') is-invalid @else border-0 @enderror"
         id="dias_transcurridos" placeholder="dias_transcurridos" name="dias_transcurridos"
         value="{{ old('dias_transcurridos', $product->dias_transcurridos) }}" required>
-    <label for="dias_transcurridos">{{ __('Running Days') }}*</label>
+    <label for="dias_transcurridos">{{ __('Days Passed') }}*</label>
 </div>
 
 <div class="mb-3">

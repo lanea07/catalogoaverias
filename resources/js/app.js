@@ -93,3 +93,79 @@ if ( exampleModal ) {
         modalBodyInput.src = recipient
     } )
 }
+
+// Lang Switcher
+( () => {
+    'use strict'
+
+    const getStoredLang = () => localStorage.getItem( 'lang' )
+    const setStoredLang = lang => localStorage.setItem( 'lang', lang )
+
+    const getPreferredLang = () => {
+        const storedLang = getStoredLang()
+        if ( storedLang ) {
+            return storedLang
+        }
+
+        return navigator.language === 'es' ? 'es' : 'en'
+    }
+
+    const setLang = lang => {
+        if ( navigator.language === 'es' ) {
+            document.documentElement.setAttribute( 'data-bs-lang', 'es' )
+        } else {
+            document.documentElement.setAttribute( 'data-bs-lang', lang )
+        }
+    }
+
+    setLang( getPreferredLang() )
+
+    const showActiveLang = ( lang, focus = false ) => {
+        const langSwitcher = document.querySelector( '#bd-lang' )
+
+        if ( !langSwitcher ) {
+            return
+        }
+
+        const langSwitcherText = document.querySelector( '#bd-lang-text' )
+        const activeLangIcon = document.querySelector( '.lang-icon-active use' )
+        const btnToActive = document.querySelector( `[data-bs-lang-value="${lang}"]` )
+        const svgOfActiveBtn = btnToActive.querySelector( 'svg use' ).getAttribute( 'href' )
+
+        document.querySelectorAll( '[data-bs-lang-value]' ).forEach( element => {
+            element.classList.remove( 'active' )
+            element.setAttribute( 'aria-pressed', 'false' )
+        } )
+
+        btnToActive.classList.add( 'active' )
+        btnToActive.setAttribute( 'aria-pressed', 'true' )
+        activeLangIcon.setAttribute( 'href', svgOfActiveBtn )
+        const langSwitcherLabel = `${langSwitcherText.textContent} (${btnToActive.dataset.bsLangValue})`
+        langSwitcher.setAttribute( 'aria-label', langSwitcherLabel )
+
+        if ( focus ) {
+            langSwitcher.focus()
+        }
+    }
+
+    window.matchMedia( '(prefers-color-scheme: dark)' ).addEventListener( 'change', () => {
+        const storedLang = getStoredLang()
+        if ( storedLang !== 'light' && storedLang !== 'dark' ) {
+            setLang( getPreferredLang() )
+        }
+    } )
+
+    window.addEventListener( 'DOMContentLoaded', () => {
+        showActiveLang( getPreferredLang() )
+
+        document.querySelectorAll( '[data-bs-lang-value]' )
+            .forEach( toggle => {
+                toggle.addEventListener( 'click', () => {
+                    const lang = toggle.getAttribute( 'data-bs-lang-value' )
+                    setStoredLang( lang )
+                    setLang( lang )
+                    showActiveLang( lang, true )
+                } )
+            } )
+    } )
+} )()

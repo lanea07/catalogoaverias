@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout  :title="__('Create new product')">
     <div class="d-flex justify-content-center align-items-center my-5">
         
         

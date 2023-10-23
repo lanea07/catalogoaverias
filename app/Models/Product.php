@@ -32,8 +32,4 @@ class Product extends Model
         'img_path',
         'observaciones'
     ];
-
-    protected $casts = [
-        'img_path' => GooglePath::class,
-    ];
 }

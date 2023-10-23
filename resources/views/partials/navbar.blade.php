@@ -31,7 +31,49 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav mx-lg-3">
+            {{-- Lang Toggler --}}
+            <ul class="navbar-nav mx-lg-1">
+                <li class="nav-item dropdown">
+                    <button
+                        class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center "
+                        id="bd-lang" type="button" aria-expanded="true" data-bs-toggle="dropdown"
+                        data-bs-display="static" aria-label="Toggle lang (dark)">
+                        <svg class="bi my-1 lang-icon-active">
+                            <use href="#lang-es"></use>
+                        </svg>
+                        <span class="d-lg-none ms-2" id="bd-lang-text">{{ __('Toggle lang') }}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-lang-text" data-bs-popper="static">
+                        <li>
+                            <a href="{{ route('set-locale', ['lang' => 'es']) }}" type="button" class="align-items-center d-flex dropdown-item"
+                                data-bs-lang-value="es" aria-pressed="false">
+                                <svg class="bi me-2 opacity-50 lang-icon">
+                                    <use href="#lang-es"></use>
+                                </svg>
+                                {{ __('Spanish') }}
+                                <svg class="bi ms-auto d-none">
+                                    <use href="#check2"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('set-locale', ['lang' => 'en']) }}" type="button" class="active align-items-center d-flex dropdown-item"
+                                data-bs-lang-value="en" aria-pressed="false">
+                                <svg class="bi me-2 opacity-50 lang-icon">
+                                    <use href="#lang-en"></use>
+                                </svg>
+                                {{ __('English') }}
+                                <svg class="bi d-none ms-auto">
+                                    <use href="#check2"></use>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            {{-- Theme Toggler --}}
+            <ul class="navbar-nav mx-lg-1">
                 <li class="nav-item dropdown">
                     <button
                         class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center "
