@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -37,3 +38,5 @@ Route::get('categories', [SearchController::class, 'categories'])->name('categor
 Route::resources([
     'products' => ProductController::class
 ]);
+
+Route::get('/set-locale/{lang}', [LangController::class, 'setLocale'])->name('set-locale');

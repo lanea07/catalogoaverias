@@ -33,7 +33,7 @@
                     <th>{{ __('Provider NIT') }}</th>
                     <th>{{ __('Provider Name') }}</th>
                     <th>{{ __('Starting Date') }}</th>
-                    <th>{{ __('Running Days') }}</th>
+                    <th>{{ __('Days Passed') }}</th>
                 </thead>
                 <tbody>
                     @foreach ($excelArray as $row)

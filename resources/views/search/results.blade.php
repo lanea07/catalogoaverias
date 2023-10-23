@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="__('Search Results')">
 
     <div class="container pt-5 ">
         @if($allProducts->isEmpty())
