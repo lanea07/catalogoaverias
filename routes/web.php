@@ -25,8 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/products/massive-upload', [ProductController::class, 'massive_upload'])->name('massive-upload');
-    Route::post('/products/process-massive-upload', [ProductController::class, 'process_massive_upload']);
+    Route::get('/products/massive-upload', [ProductController::class, 'massiveUpload'])->name('massive-upload');
+    Route::post('/products/process-massive-upload', [ProductController::class, 'processMassiveUpload']);
+    Route::get('/products/delete-image', [ProductController::class, 'deleteImage']);
 });
 
 require __DIR__ . '/auth.php';

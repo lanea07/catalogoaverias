@@ -25,11 +25,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended();
+        } catch (\Throwable $th) {
+            return redirect()->route('login')->with('status', __('An error has occurred, please try again later'));
+        }
     }
 
     /**

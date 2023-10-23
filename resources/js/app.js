@@ -6,6 +6,8 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+
+// Theme Switcher
 ( () => {
     'use strict'
 
@@ -80,3 +82,14 @@ Alpine.start();
             } )
     } )
 } )()
+
+// Product Show View Image Modal
+const exampleModal = document.getElementById( 'image-viewer' )
+if ( exampleModal ) {
+    exampleModal.addEventListener( 'show.bs.modal', event => {
+        const button = event.relatedTarget
+        const recipient = button.getAttribute( 'data-bs-path' )
+        const modalBodyInput = exampleModal.querySelector( '.modal-body img' )
+        modalBodyInput.src = recipient
+    } )
+}

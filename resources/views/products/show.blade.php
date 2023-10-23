@@ -1,22 +1,17 @@
 <x-app-layout>
 
-
     <div class="container mt-5">
         <h1>{{ $product->descripcion }}</h1>
         <div class="row my-4">
-            <div class="col-12 col-md-4">
-                @if ($product->img_path)
+            <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column">
+                @if ($images)
                     <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://placehold.co/300x180" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://placehold.co/400x200" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://placehold.co/250x150" class="d-block w-100">
-                            </div>
+                            @foreach ($images as $image)
+                                <div class="carousel-item active">
+                                    <img src="{{ $image }}" class="d-block w-100">
+                                </div>
+                            @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
@@ -34,10 +29,13 @@
                         <img src="{{ url('/images/No_image_available.png') }}" class="d-block w-100">
                     </div>
                 @endif
+                <!-- Button trigger modal -->
+                <a type="button" class="btn btn-link text-secondary" data-bs-toggle="modal" data-bs-target="#images-modal">
+                    {{ __('Enlarge')}}<i class="fa-solid fa-magnifying-glass ms-2"></i>
+                </a>
             </div>
+
             <div class="col-12 col-md-8 shadow-sm product-detail p-3 bg-body-tertiary">
-
-
                 <ul class="nav nav-tabs" id="product-detail" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
@@ -85,11 +83,13 @@
                         <div class="row">
                             <div class="col-6">
                                 <p class="fw-bold">Descripción: <small
-                                        class="fw-normal">{{ $product->descripcion }}</small></p>
+                                        class="fw-normal">{{ $product->descripcion }}</small>
+                                </p>
                             </div>
                             <div class="col-6">
                                 <p class="fw-bold">Referencia: <small
-                                        class="fw-normal">{{ $product->referencia }}</small></p>
+                                        class="fw-normal">{{ $product->referencia }}</small>
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -206,9 +206,11 @@
                     @auth
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{{ route('products.edit', $product) }}">Editar</a>
-                            <a class="btn btn-danger" href="#" onclick="document.getElementById('delete-directorio').submit()">Eliminar</a>
+                            <a class="btn btn-danger" href="#"
+                                onclick="document.getElementById('delete-directorio').submit()">Eliminar</a>
                         </div>
-                        <form class="d-none" id="delete-directorio" action="{{ route('products.destroy', $product) }}" method="post">
+                        <form class="d-none" id="delete-directorio" action="{{ route('products.destroy', $product) }}"
+                            method="post">
                             @csrf @method('DELETE')
                         </form>
                     @endauth
@@ -217,4 +219,42 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="images-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-carousel-Controls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($images as $image)
+                                <div class="carousel-item active">
+                                    <img src="{{ $image }}" class="d-block w-100">
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button"
+                            data-bs-target="#modal-carousel-Controls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                            data-bs-target="#modal-carousel-Controls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </x-app-layout>

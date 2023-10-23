@@ -48,26 +48,28 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
      */
     public function model(array $row)
     {
-        return new Product([
-            'ticket' => $row[0],
-            'queue' => $row[1],
-            'ean' => $row[2],
-            'negocio' => $row[3],
-            'departamento' => $row[4],
-            'grupo' => $row[5],
-            'categoria' => $row[6],
-            'subcategoria' => $row[7],
-            'descripcion' => $row[8],
-            'referencia' => $row[9],
-            'marca' => $row[10],
-            'medida' => $row[11],
-            'color' => $row[12],
-            'costo' => $row[13],
-            'nit_proveedor' => $row[14],
-            'razon_social_proveedor' => $row[15],
-            'fecha_inicio_gestion' => $row[16],
-            'dias_transcurridos' => $row[17],
-        ]);
+        return new Product(
+            [
+                'ticket' => trim($row[0]),
+                'queue' => trim($row[1]),
+                'ean' => trim($row[2]),
+                'negocio' => trim($row[3]),
+                'departamento' => trim($row[4]),
+                'grupo' => trim($row[5]),
+                'categoria' => trim($row[6]),
+                'subcategoria' => trim($row[7]),
+                'descripcion' => trim($row[8]),
+                'referencia' => trim($row[9]),
+                'marca' => trim($row[10]),
+                'medida' => trim($row[11]),
+                'color' => trim($row[12]),
+                'costo' => trim($row[13]),
+                'nit_proveedor' => trim($row[14]),
+                'razon_social_proveedor' => trim($row[15]),
+                'fecha_inicio_gestion' => trim($row[16]),
+                'dias_transcurridos' => trim($row[17]),
+            ]
+        );
     }
 
     public function bindValue(Cell $cell, $value)
