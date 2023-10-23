@@ -20,6 +20,6 @@ class CheckRoles
         if (Auth::check() && auth()->user()->hasRoles($roles)) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect()->guest(route('login'));
     }
 }

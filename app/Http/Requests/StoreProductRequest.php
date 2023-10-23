@@ -39,7 +39,8 @@ class StoreProductRequest extends FormRequest
             'nit_proveedor' => 'required_unless:nit_proveedor,null',
             'razon_social_proveedor' => 'required_unless:razon_social_proveedor,null',
             'fecha_inicio_gestion' => 'required',
-            'dias_transcurridos' => 'required|numeric|gte:0'
+            'dias_transcurridos' => 'required|numeric|gte:0',
+            'images.*' => 'mimes:jpeg,png,jpg,gif,svg'
         ];
     }
 }

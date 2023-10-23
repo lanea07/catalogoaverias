@@ -93,3 +93,60 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
     vertical-align: -.125em;
     fill: currentcolor;
 }
+/* Container needed to position the overlay. Adjust the width as needed */
+.img-container {
+    position: relative;
+}
+
+/* The overlay effect (full height and width) - lays on top of the container and over the image */
+.overlay-view {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.overlay-delete {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.overlay-view:hover {
+    opacity: 1;
+}
+
+.overlay-delete:hover {
+    opacity: 1;
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+    /* color: white; */
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* When you move the mouse over the icon, change color */
+.fa-user:hover {
+    color: #eee;
+}

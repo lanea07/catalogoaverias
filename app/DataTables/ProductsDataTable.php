@@ -107,7 +107,7 @@ class ProductsDataTable extends DataTable
                 ->width(60)
                 ->addClass('dt-control')
                 ->title(__('Details')),
-            Column::make('ticket'),
+            Column::make('ticket')->render('\'<a target="_blank" href="products/\' + full.id + \'">\' + full.ticket + \'</a>\''),
             Column::make('queue'),
             Column::make('ean'),
             Column::make('negocio'),

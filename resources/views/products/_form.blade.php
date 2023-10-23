@@ -1,9 +1,9 @@
 @csrf
 
-
 <div class="form-floating mb-3">
     <input type="number" class="form-control @error('ticket') is-invalid @else border-0 @enderror" id="ticket"
-        placeholder="ticket" name="ticket" value="{{ old('ticket', $product->ticket) }}" required>
+        placeholder="ticket" name="ticket" value="{{ old('ticket', $product->ticket) }}" required
+        {{ request()->routeIs('products.edit') ? 'readonly' : '' }}>
     <label for="ticket">{{ __('Ticket') }}*</label>
 </div>
 
@@ -85,7 +85,7 @@
 <div class="form-floating mb-3">
     <input type="" class="form-control @error('costo') is-invalid @else border-0 @enderror" id="costo"
         placeholder="costo" name="costo" value="{{ old('costo', $product->costo) }}" required>
-    <label for="costo">{{ __('Cost') }}</label>
+    <label for="costo">{{ __('Cost') }}*</label>
 </div>
 
 <div class="form-floating mb-3">
@@ -110,17 +110,59 @@
 </div>
 
 <div class="form-floating mb-3">
-    <input type="number" class="form-control @error('dias_transcurridos') is-invalid @else border-0 @enderror" id="dias_transcurridos"
-        placeholder="dias_transcurridos" name="dias_transcurridos" value="{{ old('dias_transcurridos', $product->dias_transcurridos) }}" required>
+    <input type="number" class="form-control @error('dias_transcurridos') is-invalid @else border-0 @enderror"
+        id="dias_transcurridos" placeholder="dias_transcurridos" name="dias_transcurridos"
+        value="{{ old('dias_transcurridos', $product->dias_transcurridos) }}" required>
     <label for="dias_transcurridos">{{ __('Running Days') }}*</label>
+</div>
+
+<div class="mb-3">
+    <h5>{{ __('Images') }}</h5>
+    <div class="d-flex overflow-auto">
+        @forelse (Storage::disk('google')->files($product->img_path) as $image)
+            <div class="img-container mx-2 mb-2">
+                <img class="" src="{{ Storage::disk('google')->url($image) }}" alt="" height=150>
+                <div class="overlay-view">
+                    <button type="button" class="icon btn text-light" data-bs-toggle="modal" data-bs-target="#image-viewer"
+                        data-bs-path="{{ Storage::disk('google')->url($image) }}" title="{{ __('View') }}">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+                <div class="overlay-delete">
+                    <a href="/products/delete-image?product_id={{ $product->id }}&imgPath={{ $image }}"
+                        class="icon link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" title="{{ __('Delete') }}">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </a>
+                </div>
+            </div>
+        @empty
+            <p>{{ __('No photos where found. Try adding some.') }}</p>
+        @endforelse
+    </div>
 </div>
 
 {{-- input images --}}
 <div class="mb-3">
-    <label for="formFileMultiple" class="form-label">{{ __('Images') }}</label>
-    <input class="form-control" type="file" id="formFileMultiple" multiple>
-  </div>
-  
+    <label for="formFileMultiple" class="form-label">{{ __('Upload Photos') }}</label>
+    <input class="form-control" type="file" id="formFileMultiple" name="images[]" multiple
+        value="{{ old('img_path') }}">
+</div>
+
 <x-primary-button>{{ $btnText }}</x-primary-button>
 
-
+{{-- Image Viewer Modal --}}
+<div class="modal fade" id="image-viewer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="img-thumbnail" src="" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

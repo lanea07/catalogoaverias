@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\GooglePath;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,6 +34,6 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'politicas_path' => GooglePath::class,
+        'img_path' => GooglePath::class,
     ];
 }
