@@ -151,7 +151,7 @@
                         </ul>
                     </div>
                 @else
-                    <a class="nav-link d-none d-lg-block" href="{{ route('login') }}">{{ __('Log in') }}</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
                 @endauth
             </ul>
 

@@ -5,11 +5,11 @@
         <div class="row my-4">
             <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column">
                 @if ($images)
-                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach ($images as $image)
-                                <div class="carousel-item active">
-                                    <img src="{{ $image }}" class="d-block w-100">
+                            @foreach ($images as $key => $image)
+                                <div class="carousel-item @if($key === 0) active @endif">
+                                    <img src="{{ $image }}" class="d-block img-thumbnail">
                                 </div>
                             @endforeach
                         </div>
@@ -231,9 +231,9 @@
                 <div class="modal-body">
                     <div id="modal-carousel-Controls" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach ($images as $image)
-                                <div class="carousel-item active">
-                                    <img src="{{ $image }}" class="d-block w-100">
+                            @foreach ($images as $key => $image)
+                                <div class="carousel-item @if($key === 0) active @endif">
+                                    <img src="{{ $image }}" class="d-block img-thumbnail">
                                 </div>
                             @endforeach
                         </div>

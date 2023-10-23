@@ -169,3 +169,9 @@ if ( exampleModal ) {
             } )
     } )
 } )()
+
+setTimeout( () => {
+    var grid = document.querySelector( '#masonry-container' );
+    var msnry = new Masonry( grid );
+    msnry.reloadItems();
+}, 2000 );

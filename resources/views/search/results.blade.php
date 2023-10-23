@@ -6,9 +6,9 @@
         @else
             <h2 class="mb-5">{{ __('Results for') }} {{ $query }}</h2>
         @endif
-        <div class="row" data-masonry='{"percentPosition": true }'>
+        <div class="row" id="masonry-container" data-masonry='{"percentPosition": true }'>
             @foreach ($allProducts as $product)
-                <div class="col-12 col-sm-6 col-md-3 mb-4">
+                <div class="col-12 col-sm-6 col-md-3 mb-4 grid-item" >
                     <a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ route('products.show', $product->id) }}">
                         <div class="card">
                             {{-- <img src="https://placehold.co/300x180" class="card-img-top" alt="..."> --}}
