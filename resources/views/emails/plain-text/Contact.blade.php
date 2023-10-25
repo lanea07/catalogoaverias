@@ -20,6 +20,6 @@
 
 {{ trans_choice(__('Contact|Contacts'), 1) }}
 {{ __('Name') }}: {{ $mailData['validated']['name'], }}
-{{ __('Mobile') }}: {{ $mailData['validated']['phone'], }}
+{{ __('Mobile') }}: {{ $mailData['validated']['tel'], }}
 {{ __('Email') }}: {{ $mailData['validated']['email'], }}
 {{ __('Notes') }}: {{ $mailData['validated']['notes'], }}
