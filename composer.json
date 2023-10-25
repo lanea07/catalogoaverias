@@ -56,10 +56,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan cache:clear",
-            "@php artisan config:clear",
-            "@php artisan view:clear",
-            "@php artisan queue:restart"
+            "@php artisan optimize:clear"
         ]
     },
     "extra": {
