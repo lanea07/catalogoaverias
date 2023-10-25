@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,5 +41,17 @@ Route::get('categories', [SearchController::class, 'categories'])->name('categor
 Route::resources([
     'products' => ProductController::class
 ]);
-
 Route::get('/set-locale/{lang}', [LangController::class, 'setLocale'])->name('set-locale');
+Route::get('/contact/{product}', [ContactController::class, 'view']);
+Route::post('/contact', [ContactController::class, 'store']);
+
+
+// Route::get('/sendmail', function (Request $request) {
+//     $ip = $request->ip();
+//     Mail::raw('Hi user, a new login into your account from the IP Address: ' . $ip, function ($message) {
+//         $message->from('lanea07@gmail.com', 'Juan Soto');
+//         $message->to('juan.soto@flamingo.com', 'User Name');
+//     });
+//     Mail::to('juancamilo.soto@outlook.com')->send(new BenefitUserCreated(User::find(1)));
+//     return response('{message: sent}');
+// });

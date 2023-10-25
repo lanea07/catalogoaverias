@@ -8,7 +8,7 @@
                     <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($images as $key => $image)
-                                <div class="carousel-item @if($key === 0) active @endif">
+                                <div class="carousel-item @if ($key === 0) active @endif">
                                     <img src="{{ $image }}" class="d-block img-thumbnail">
                                 </div>
                             @endforeach
@@ -46,7 +46,8 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                             data-bs-target="#profile-tab-pane" type="button" role="tab"
-                            aria-controls="profile-tab-pane" aria-selected="false">{{ __('Associated Ticket') }}</button>
+                            aria-controls="profile-tab-pane"
+                            aria-selected="false">{{ __('Associated Ticket') }}</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="product-detail-content">
@@ -54,10 +55,12 @@
                         aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('EAN') }}: <small class="fw-normal">{{ $product->ean }}</small></p>
+                                <p class="fw-bold">{{ __('EAN') }}: <small
+                                        class="fw-normal">{{ $product->ean }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Business Unit') }}: <small class="fw-normal">{{ $product->negocio }}</small></p>
+                                <p class="fw-bold">{{ __('Business Unit') }}: <small
+                                        class="fw-normal">{{ $product->negocio }}</small></p>
                             </div>
                         </div>
                         <div class="row">
@@ -66,12 +69,14 @@
                                         class="fw-normal">{{ $product->departamento }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Group') }}: <small class="fw-normal">{{ $product->grupo }}</small></p>
+                                <p class="fw-bold">{{ __('Group') }}: <small
+                                        class="fw-normal">{{ $product->grupo }}</small></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Category') }}: <small class="fw-normal">{{ $product->categoria }}</small>
+                                <p class="fw-bold">{{ __('Category') }}: <small
+                                        class="fw-normal">{{ $product->categoria }}</small>
                                 </p>
                             </div>
                             <div class="col-6">
@@ -93,15 +98,18 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Brand') }}: <small class="fw-normal">{{ $product->marca }}</small></p>
+                                <p class="fw-bold">{{ __('Brand') }}: <small
+                                        class="fw-normal">{{ $product->marca }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Measure') }}: <small class="fw-normal">{{ $product->medida }}</small></p>
+                                <p class="fw-bold">{{ __('Measure') }}: <small
+                                        class="fw-normal">{{ $product->medida }}</small></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Color') }}: <small class="fw-normal">{{ $product->color }}</small></p>
+                                <p class="fw-bold">{{ __('Color') }}: <small
+                                        class="fw-normal">{{ $product->color }}</small></p>
                             </div>
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Provider Name') }}: <small
@@ -178,11 +186,13 @@
                         aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Ticket') }}: <small class="fw-normal">{{ $product->ticket }}</small>
+                                <p class="fw-bold">{{ __('Ticket') }}: <small
+                                        class="fw-normal">{{ $product->ticket }}</small>
                                 </p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Store') }}: <small class="fw-normal">{{ $product->queue }}</small></p>
+                                <p class="fw-bold">{{ __('Store') }}: <small
+                                        class="fw-normal">{{ $product->queue }}</small></p>
                             </div>
                         </div>
                         <div class="row">
@@ -201,10 +211,11 @@
                     </div>
                 </div>
 
-                <div class="align-items-center d-flex flex-column-reverse flex-md-row justify-content-between">
-                    @auth
+                @auth
+                    <div class="align-items-center d-flex flex-column-reverse flex-md-row justify-content-between">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="{{ route('products.edit', $product) }}">{{ __('Edit') }}</a>
+                            <a class="btn btn-primary"
+                                href="{{ route('products.edit', $product) }}">{{ __('Edit') }}</a>
                             <a class="btn btn-danger" href="#"
                                 onclick="document.getElementById('delete-directorio').submit()">{{ __('Delete') }}</a>
                         </div>
@@ -212,9 +223,16 @@
                             method="post">
                             @csrf @method('DELETE')
                         </form>
-                    @endauth
-                </div>
-
+                    </div>
+                @endauth
+                @guest
+                    <div class="align-items-center d-flex flex-column-reverse flex-md-row justify-content-end">
+                        <div class="btn-group d-flex">
+                            <a class="btn btn-success"
+                                href="{{ url('contact', $product) }}">{{ __('I\'m interested') }}</a>
+                        </div>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>
@@ -232,7 +250,7 @@
                     <div id="modal-carousel-Controls" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($images as $key => $image)
-                                <div class="carousel-item @if($key === 0) active @endif">
+                                <div class="carousel-item @if ($key === 0) active @endif">
                                     <img src="{{ $image }}" class="d-block img-thumbnail">
                                 </div>
                             @endforeach

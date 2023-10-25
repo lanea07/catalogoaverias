@@ -17,11 +17,16 @@ class Lang
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (request()->session()->has('locale')) {
-            App::setLocale(session('locale'));
-        } else {
+        if (isset($request->lang)) {
             request()->session()->put('locale', $request->lang);
             App::setLocale($request->lang);
+        } else {
+            if (request()->session()->has('locale')) {
+                App::setLocale(session('locale'));
+            } else {
+                request()->session()->put('locale', config('app.locale'));
+                App::setLocale(config('app.locale'));
+            }
         }
         return $next($request);
     }
