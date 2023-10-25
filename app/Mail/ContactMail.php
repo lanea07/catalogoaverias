@@ -14,14 +14,12 @@ class ContactMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    protected array $mailData;
-
     /**
      * Create a new message instance.
      */
-    public function __construct(array $mailData)
+    public function __construct(public $mailData)
     {
-        $this->mailData = $mailData;
+        //
     }
 
     /**
