@@ -9,16 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class ContactMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    protected array $mailData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public $mailData)
+    public function __construct(array $mailData)
     {
-        //
+        $this->mailData = $mailData;
     }
 
     /**
