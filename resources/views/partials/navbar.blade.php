@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActive('search') }}"
-                        href="{{ route('categories') }}">{{ __('Categories') }}</a>
+                        href="{{ route('categories') }}">{{ trans_choice(__('Category|Categories'), 1) }}</a>
                 </li>
             </ul>
 

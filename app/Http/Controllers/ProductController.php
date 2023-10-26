@@ -45,14 +45,16 @@ class ProductController extends Controller
         $this->authorize('create', Product::class);
         $product = $request->validated();
         try {
-            foreach ($product['images'] as $key => $image) {
-                $image->storeAs(
-                    "catalogoaverias/{$product['ticket']}",
-                    'File' . '_' . $key . '.' . $image->extension(),
-                    'google'
-                );
+            if (isset($product['images'])) {
+                foreach ($product['images'] as $key => $image) {
+                    $image->storeAs(
+                        "catalogoaverias/{$product['ticket']}",
+                        'File' . '_' . $key . '.' . $image->extension(),
+                        'google'
+                    );
+                }
+                $product += ['img_path' => "catalogoaverias/{$product['ticket']}"];
             }
-            $product += ['img_path' => "catalogoaverias/{$product['ticket']}"];
             $product = Product::create($product);
         } catch (\Throwable $th) {
             return redirect()->route('products.create', [
@@ -135,6 +137,7 @@ class ProductController extends Controller
     {
         try {
             $product->delete();
+            return redirect()->route('products.index');
         } catch (\Throwable $th) {
             //throw $th;
         }

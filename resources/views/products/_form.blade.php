@@ -40,8 +40,8 @@
 
 <div class="form-floating mb-3">
     <input type="text" class="form-control @error('categoria') is-invalid @else border-0 @enderror" id="categoria"
-        placeholder="categoria" name="categoria" value="{{ old('categoria', $product->categoria) }}">
-    <label for="categoria">{{ __('Category') }}</label>
+        placeholder="categoria" name="categoria" value="{{ old('categoria', $product->categoria) }}" required>
+    <label for="categoria">{{ trans_choice(__('Category|Categories'), 1) }}*</label>
 </div>
 
 <div class="form-floating mb-3">
@@ -114,6 +114,12 @@
         id="dias_transcurridos" placeholder="dias_transcurridos" name="dias_transcurridos"
         value="{{ old('dias_transcurridos', $product->dias_transcurridos) }}" required>
     <label for="dias_transcurridos">{{ __('Days Passed') }}*</label>
+</div>
+
+<div class="form-floating mb-3">
+    <textarea type="number" class="form-control @error('observaciones') is-invalid @else border-0 @enderror"
+        id="observaciones" placeholder="observaciones" name="observaciones">{{ old('observaciones', $product->observaciones) }}</textarea>
+    <label for="observaciones">{{ __('Observations') }}</label>
 </div>
 
 <div class="mb-3">

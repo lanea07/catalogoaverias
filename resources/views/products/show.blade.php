@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Category') }}: <small
+                                <p class="fw-bold">{{ trans_choice(__('Category|Categories'), 1) }}: <small
                                         class="fw-normal">{{ $product->categoria }}</small>
                                 </p>
                             </div>
@@ -203,9 +203,12 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium
-                                    provident placeat voluptate nisi nam inventore distinctio deserunt, ad, ea dolores.
-                                    Ducimus nulla soluta quis tenetur magni fuga dignissimos ratione.</p>
+                                    @if (empty($product->observaciones))
+                                        <p>{{ __('No anotations.') }}</p>
+                                    @else
+                                        <h5>{{ __('Observations') }}</h5>
+                                        <p>{{ $product->observaciones }}</p>
+                                    @endif
                             </div>
                         </div>
                     </div>
