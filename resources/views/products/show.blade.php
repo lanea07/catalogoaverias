@@ -129,7 +129,7 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Current Price') }}:
+                                <p class="fw-bold">{{ __('Current Cost') }}:
                                     <small class="fw-normal">
                                         @switch($product->dias_transcurridos)
                                             @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)

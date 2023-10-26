@@ -21,7 +21,7 @@
                                 <p class="card-text">
                                     <b>{{ __('Antiquity') }}: </b>{{ $product->dias_transcurridos }} días<br>
                                     <b>{{ __('Store') }}: </b>{{ $product->queue }}<br>
-                                    <b>{{ __('Current Price') }}: </b>
+                                    <b>{{ __('Current Cost') }}: </b>
                                     @switch($product->dias_transcurridos)
                                         @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
                                             {{ toCurrency($product->costo, "COP") }}
