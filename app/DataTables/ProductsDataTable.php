@@ -111,7 +111,7 @@ class ProductsDataTable extends DataTable
                                 .sort()
                                 .unique()
                                 .each( function ( d ) {
-                                    select.append( $( "<option value=" + d + ">" + d + "</option>" ) );
+                                    if(d) { select.append( $( "<option value=" + d + ">" + d + "</option>" ) ); }
                                 } );
                         }
 

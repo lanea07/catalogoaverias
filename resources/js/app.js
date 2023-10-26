@@ -145,13 +145,6 @@ if ( exampleModal ) {
         }
     }
 
-    window.matchMedia( '(prefers-color-scheme: dark)' ).addEventListener( 'change', () => {
-        const storedLang = getStoredLang()
-        if ( storedLang !== 'light' && storedLang !== 'dark' ) {
-            setLang( getPreferredLang() )
-        }
-    } )
-
     window.addEventListener( 'DOMContentLoaded', () => {
         showActiveLang( getPreferredLang() )
 
@@ -169,6 +162,8 @@ if ( exampleModal ) {
 
 setTimeout( () => {
     var grid = document.querySelector( '#masonry-container' );
-    var msnry = new Masonry( grid );
-    msnry.reloadItems();
+    if ( grid ) {
+        var msnry = new Masonry( grid );
+        msnry.reloadItems();
+    }
 }, 2000 );

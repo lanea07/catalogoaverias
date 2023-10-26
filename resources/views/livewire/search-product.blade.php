@@ -6,7 +6,7 @@
                 <div class="form-floating">
                     <input class="form-control form-control-lg" id="categories-search" type="text"
                         placeholder="Categorias..." wire:model.live="query" wire:keydown.escape="resetInput" />
-                    <label class="form-label" for="categories-search">{{ __('Categories') }}...</label>
+                    <label class="form-label" for="categories-search">{{ trans_choice('Category|Categories', 2) }}...</label>
                 </div>
                 
                     <ul class="list-group" id="dropdown-search">
