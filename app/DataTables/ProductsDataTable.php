@@ -42,7 +42,7 @@ class ProductsDataTable extends DataTable
             ->setTableId('products-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
@@ -57,7 +57,7 @@ class ProductsDataTable extends DataTable
                 [
                     'responsive' => [
                         'details' => [
-                            'type' => 'column',
+                        'type' => 'inline',
                             'target' => 'tr',
                             'renderer' => 'function (api, rowIdx, columns) {
                                 let data = columns.map((col, i) => {
@@ -87,6 +87,36 @@ class ProductsDataTable extends DataTable
                             }',
                         ],
                     ],
+                'initComplete' => 'function() { 
+                    var table = $( "#products-table" ).DataTable();
+                    table.columns().flatten().each( function ( colIdx ) {
+                        // Create the select list and search operation
+                        if(colIdx !== 0) {
+                            var select = $( "<select />" )
+                                .appendTo(
+                                    table.column( colIdx ).footer()
+                                )
+                                .on( "change", function () {
+                                    table
+                                        .column( colIdx )
+                                        .search( $( this ).val() )
+                                        .draw();
+                                }
+                            );
+                            select.append( $("<option value=\'\'>---</option>") )
+                            // Get the search data for the first column and add to the select list
+                            table
+                                .column( colIdx )
+                                .data()
+                                .sort()
+                                .unique()
+                                .each( function ( d ) {
+                                    select.append( $( "<option value=" + d + ">" + d + "</option>" ) );
+                                } );
+                        }
+
+                    } );
+                }'
                     // 'columnDefs' => [
                     //     ['responsivePriority' => 0, 'targets' => [0, 1, 2, 3, 4]],
                     //     ['responsivePriority' => 1, 'targets' => [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
@@ -107,7 +137,10 @@ class ProductsDataTable extends DataTable
                 ->width(60)
                 ->addClass('dt-control')
                 ->title(__('Details')),
-            Column::make('ticket')->render('\'<a target="_blank" href="products/\' + full.id + \'">\' + full.ticket + \'</a>\'')->title(__('Ticket')),
+            Column::make('ticket')->render(
+                '\'<a class="link-primary" target="_blank" href="products/\' + full.id + \'">\' + data + \'</a>\''
+            )->title(__('Ticket')),
+            Column::make('img_path')->title(__('Has Images?')),
             Column::make('queue')->title(__('Queue')),
             Column::make('ean')->title(__('EAN')),
             Column::make('negocio')->title(__('Business Unit')),

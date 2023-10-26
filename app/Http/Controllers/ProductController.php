@@ -137,6 +137,9 @@ class ProductController extends Controller
     {
         try {
             $product->delete();
+            if ($product->img_path) {
+                Storage::disk('google')->deleteDirectory($product->img_path);
+            }
             return redirect()->route('products.index');
         } catch (\Throwable $th) {
             //throw $th;
