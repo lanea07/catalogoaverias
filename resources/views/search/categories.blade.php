@@ -1,7 +1,7 @@
 <x-app-layout :title="__('Categories')">
 
     <div class="container pt-5 ">
-        <div class="row" data-masonry='{"percentPosition": true }'>
+        <div class="row" id="masonry-container" data-masonry='{"percentPosition": true }'>
             @forelse ($categories as $category)
                 <div class="col-12 col-sm-6 col-md-3 mb-4">
                     <a class="link-offset-2 link-underline link-underline-opacity-0"

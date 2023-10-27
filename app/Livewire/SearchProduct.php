@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class SearchProduct extends Component
 {
-    
+    #[Rule('required')]
     public $query;
+
     public $categories;
     public $error;
 
@@ -43,11 +45,15 @@ class SearchProduct extends Component
         return view('livewire.search-product');
     }
 
-    public function search($term = "")
+    public function search($term = '')
     {
+        $validated = $this->validate([
+            'query' => 'required'
+        ]);
         if ($term) {
-            $this->query = $term;
+            return $this->redirect('search/' . $term);
+        } else if ($this->query) {
+            return $this->redirect('search/' . $this->query);
         }
-        return $this->redirect('search/' . $this->query);
     }
 }
