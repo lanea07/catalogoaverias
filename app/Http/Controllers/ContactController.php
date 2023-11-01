@@ -29,7 +29,8 @@ class ContactController extends Controller
         );
         $product = Product::where('id', '=', $validated['id'])->first();
         $mailData = ['validated' => $validated, 'product' => $product];
-        Mail::to(env('CONTACT_FORM_DESTINATION_ADDRESS', 'juan.soto@flamingo.com.co'))->locale('es')->queue(new ContactMail($mailData));
+        $destination_addresses = explode(',', env('CONTACT_FORM_DESTINATION_ADDRESS', 'juan.soto@flamingo.com.co'));
+        Mail::to($destination_addresses)->locale('es')->queue(new ContactMail($mailData));
         return redirect()->back()->with('status', __('Request succesfuly sent'));
     }
 }
