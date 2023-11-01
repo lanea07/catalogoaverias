@@ -30,6 +30,7 @@ class Product extends Model
         'fecha_inicio_gestion',
         'dias_transcurridos',
         'img_path',
+        'garantia_expira',
         'observaciones'
     ];
 }

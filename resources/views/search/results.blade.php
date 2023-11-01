@@ -37,7 +37,6 @@
                                             @break
                                     @endswitch
                                     <br>
-                                    <b>{{ __('Original Price') }}: </b>{{ toCurrency($product->costo, "COP") }}
                                     <b>{{ __('Discount') }}: </b>
                                     @switch($product->dias_transcurridos)
                                         @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
@@ -53,6 +52,8 @@
                                             {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.8)/$product->costo) }}
                                             @break
                                     @endswitch
+                                    <br>
+                                    <b>{{ __('Warranty Expiration Date') }}: </b>{{ $product->garantia_expira }}
                                 </p>
                             </div>
                         </div>

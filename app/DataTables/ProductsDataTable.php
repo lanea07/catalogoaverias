@@ -158,6 +158,7 @@ class ProductsDataTable extends DataTable
             Column::make('razon_social_proveedor')->title(__('Provider Name')),
             Column::make('fecha_inicio_gestion')->title(__('Starting Date')),
             Column::make('dias_transcurridos')->title(__('Days Passed')),
+            Column::make('observaciones')->title(__('Notes')),
             Column::make(__('Options'))
                 ->render('\'<div class="dropdown"><a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">' . __('Options') . '</a><ul class="dropdown-menu"><li><a target="_blank" class="dropdown-item" href="products/\' + full.id + \'">' . __('View') . '</a></li><li><a target="_blank" class="dropdown-item" href="products/\' + full.id + \'/edit">' . __('Edit') . '</a></li></ul></div>\''),
             // ->render('\'<a href="products/\' + full.id + \'">Detalles</a>\''),

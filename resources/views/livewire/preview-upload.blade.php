@@ -22,7 +22,7 @@
                     <th>{{ __('Business Unit') }}</th>
                     <th>{{ __('Department') }}</th>
                     <th>{{ __('Group') }}</th>
-                    <th>{{ __('Category') }}</th>
+                    <th>{{ trans_choice('Category|Categories', 1) }}</th>
                     <th>{{ __('Subcategory') }}</th>
                     <th>{{ __('Description') }}</th>
                     <th>{{ __('Reference') }}</th>
@@ -34,6 +34,8 @@
                     <th>{{ __('Provider Name') }}</th>
                     <th>{{ __('Starting Date') }}</th>
                     <th>{{ __('Days Passed') }}</th>
+                    <th>{{ __('Warranty Expiration Date') }}</th>
+                    <th>{{ __('Notes') }}</th>
                 </thead>
                 <tbody>
                     @foreach ($excelArray as $row)
@@ -56,6 +58,8 @@
                             <td>{{ $row[15] }}</td>
                             <td>{{ $row[16] }}</td>
                             <td>{{ $row[17] }}</td>
+                            <td>{{ $row[18] }}</td>
+                            <td>{{ $row[19] }}</td>
                         </tr>
                     @endforeach
                 </tbody>
