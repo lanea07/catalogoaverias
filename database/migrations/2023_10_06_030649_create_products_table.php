@@ -32,6 +32,7 @@ return new class extends Migration
             $table->text('fecha_inicio_gestion');
             $table->text('dias_transcurridos');
             $table->text('img_path')->nullable();
+            $table->text('garantia_expira')->nullable();
             $table->text('observaciones')->nullable();
             $table->timestamps();
         });

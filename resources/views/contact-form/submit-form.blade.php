@@ -8,7 +8,7 @@
                 <h1 class="fs-2">{{ __('Contact Form') }}</h1>
                 <hr>
                 <p>{{ __('We\'re glad you are interested in owr products. Please fill this form and one of owr agents will get in touch with you soon.') }}</p>
-                @include('contact-form._form', ['btnText' => __('Save')])
+                @include('contact-form._form', ['btnText' => __('Send')])
             </form>
 
         </div>

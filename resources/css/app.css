@@ -150,3 +150,8 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
 .fa-user:hover {
     color: #eee;
 }
+#dropdown-search {
+    min-height: 0px;
+    max-height: 200px;
+    overflow: auto;
+}

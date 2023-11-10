@@ -117,6 +117,13 @@
 </div>
 
 <div class="form-floating mb-3">
+    <input type="date" class="form-control @error('garantia_expira') is-invalid @else border-0 @enderror"
+        id="garantia_expira" placeholder="garantia_expira" name="garantia_expira"
+        value="{{ old('garantia_expira', $product->garantia_expira) }}">
+    <label for="garantia_expira">{{ __('Warranty Expiration Date') }}*</label>
+</div>
+
+<div class="form-floating mb-3">
     <textarea type="number" class="form-control @error('observaciones') is-invalid @else border-0 @enderror"
         id="observaciones" placeholder="observaciones" name="observaciones">{{ old('observaciones', $product->observaciones) }}</textarea>
     <label for="observaciones">{{ __('Observations') }}</label>

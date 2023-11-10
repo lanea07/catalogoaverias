@@ -23,7 +23,7 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
     private $date_format = 'Y-m-d';
 
     // set the columns to be formatted as dates
-    private $date_columns = ['Q'];
+    private $date_columns = ['Q', 'S'];
 
 
     /**
@@ -69,6 +69,8 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
                 'razon_social_proveedor' => trim($row[15]),
                 'fecha_inicio_gestion' => trim($row[16]),
                 'dias_transcurridos' => trim($row[17]),
+                'garantia_expira' => trim($row[18]),
+                'observaciones' => trim($row[19]),
             ]
         );
     }

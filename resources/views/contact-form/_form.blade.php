@@ -26,7 +26,7 @@
                 <td>{{ toCurrency($product->costo, 'COP') }}</td>
             </tr>
             <tr>
-                <td><b>{{ __('Current Price') }}</b></td>
+                <td><b>{{ __('Current Cost') }}</b></td>
                 <td>
                     @switch($product->dias_transcurridos)
                         @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)

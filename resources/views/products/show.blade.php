@@ -122,14 +122,14 @@
                                         class="fw-normal">{{ $product->nit_proveedor }}</small></p>
                             </div>
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Original Price') }}: <small
-                                        class="fw-normal">{{ toCurrency($product->costo, 'COP') }}</small></p>
+                                <p class="fw-bold">{{ __('Antiquity') }}: <small
+                                        class="fw-normal">{{ $product->dias_transcurridos }} días</small></p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Current Price') }}:
+                                <p class="fw-bold">{{ __('Current Cost') }}:
                                     <small class="fw-normal">
                                         @switch($product->dias_transcurridos)
                                             @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
@@ -150,10 +150,6 @@
                                         @endswitch
                                     </small>
                                 </p>
-                            </div>
-                            <div class="col-6">
-                                <p class="fw-bold">{{ __('Antiquity') }}: <small
-                                        class="fw-normal">{{ $product->dias_transcurridos }} días</small></p>
                             </div>
                         </div>
                         <div class="row">
@@ -179,6 +175,10 @@
                                         @endswitch
                                     </small>
                                 </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="fw-bold">{{ __('Warranty Expiration Date') }}: <small
+                                    class="fw-normal">{{ $product->garantia_expira }}</small></p>
                             </div>
                         </div>
                     </div>

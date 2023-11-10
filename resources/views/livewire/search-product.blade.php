@@ -1,16 +1,16 @@
 <div>
     <form class="form-subscribe" id="contactForm" wire:submit="search">
-        <div class="row">
+        <div class="row d-flex align-items-center">
             <div class="col">
 
                 <div class="form-floating">
-                    <input class="form-control form-control-lg" id="categories-search" type="text"
+                    <input class="form-control form-control-lg @error('query') is-invalid @enderror" id="categories-search" type="text"
                         placeholder="Categorias..." wire:model.live="query" wire:keydown.escape="resetInput" />
                     <label class="form-label" for="categories-search">{{ trans_choice('Category|Categories', 2) }}...</label>
                 </div>
                 
                     <ul class="list-group" id="dropdown-search">
-                        <li wire:loading class="list-group-item"><p>Loading...</li>
+                        <li wire:loading class="list-group-item link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><p>Loading...</li>
                         @if (!$error)
                             @forelse ($categories as $category)
                                 <li wire:click="search('{{ $category['categoria'] }}')"
