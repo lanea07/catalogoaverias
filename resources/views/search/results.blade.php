@@ -12,7 +12,10 @@
                     <a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ route('products.show', $product->id) }}">
                         <div class="card">
                             {{-- <img src="https://placehold.co/300x180" class="card-img-top" alt="..."> --}}
-                            <img src="{{ getGooglefirstImage($product->img_path) }}" class="card-img-top" alt="...">
+                            <div class="d-flex justify-content-center align-items-center search-results-img-container">
+                                <img src="{{ getGooglefirstImage($product->img_path) }}" class="search-results-img-blurred-background" alt="...">
+                                <img src="{{ getGooglefirstImage($product->img_path) }}" class="search-results-img" alt="...">
+                            </div>
                             <div class="card-body bg-body-tertiary">
                                 <h5 class="card-title">{{ $product->descripcion }}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ $product->referencia }}</h6>

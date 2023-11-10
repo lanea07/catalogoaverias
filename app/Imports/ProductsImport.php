@@ -79,7 +79,6 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
     {
         if (in_array($cell->getColumn(), $this->date_columns)) {
             $cell->setValueExplicit(Date::excelToDateTimeObject($value)->format($this->date_format), DataType::TYPE_STRING);
-
             return true;
         }
 
@@ -93,24 +92,18 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
     public function upsertColumns()
     {
         return [
-            'ticket',
-            'queue',
-            'ean',
             'negocio',
             'departamento',
             'grupo',
-            'categoria',
             'subcategoria',
             'descripcion',
             'referencia',
             'marca',
             'medida',
             'color',
-            'costo',
             'nit_proveedor',
             'razon_social_proveedor',
-            'fecha_inicio_gestion',
-            'dias_transcurridos'
+            'observaciones'
         ];
     }
 }

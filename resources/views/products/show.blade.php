@@ -2,14 +2,18 @@
 
     <div class="container mt-5">
         <h1>{{ $product->descripcion }}</h1>
-        <div class="row my-4">
+        <div class="row my-4" data-masonry='{"percentPosition": true }'>
             <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column">
                 @if ($images)
-                    <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded">
                             @foreach ($images as $key => $image)
-                                <div class="carousel-item @if ($key === 0) active @endif">
-                                    <img src="{{ $image }}" class="d-block img-thumbnail">
+                                <div class="carousel-item @if ($key === 0) active @endif rounded">
+                                    <a type="button" class="h-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal"
+                                        data-bs-target="#images-modal" data-bs-img-path="{{ $image }}">
+                                        <img src="{{ $image }}" class="d-block w-100 rounded product-detail-img-blurred-background">
+                                        <img src="{{ $image }}" class="d-block w-100 rounded product-detail-img">
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -178,7 +182,7 @@
                             </div>
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Warranty Expiration Date') }}: <small
-                                    class="fw-normal">{{ $product->garantia_expira }}</small></p>
+                                        class="fw-normal">{{ $product->garantia_expira }}</small></p>
                             </div>
                         </div>
                     </div>
@@ -203,12 +207,12 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                    @if (empty($product->observaciones))
-                                        <p>{{ __('No anotations.') }}</p>
-                                    @else
-                                        <h5>{{ __('Observations') }}</h5>
-                                        <p>{{ $product->observaciones }}</p>
-                                    @endif
+                                @if (empty($product->observaciones))
+                                    <p>{{ __('No anotations.') }}</p>
+                                @else
+                                    <h5>{{ __('Observations') }}</h5>
+                                    <p>{{ $product->observaciones }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -250,25 +254,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="modal-carousel-Controls" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach ($images as $key => $image)
-                                <div class="carousel-item @if ($key === 0) active @endif">
-                                    <img src="{{ $image }}" class="d-block img-thumbnail">
-                                </div>
-                            @endforeach
-                        </div>
-                        <button class="carousel-control-prev" type="button"
-                            data-bs-target="#modal-carousel-Controls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button"
-                            data-bs-target="#modal-carousel-Controls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                    <img src="" class="w-100 img-thumbnail">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"

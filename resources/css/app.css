@@ -155,3 +155,34 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
     max-height: 200px;
     overflow: auto;
 }
+.search-results-img-container {
+    overflow: hidden;
+}
+
+.search-results-img-blurred-background {
+    max-height: 250px;
+    object-fit: fill;
+    transform: scale(2);
+    -webkit-filter: blur(7px);
+    filter: blur(7px);
+}
+
+.search-results-img {
+    max-height: 250px;
+    z-index: 100000;
+    position: absolute;
+}
+
+.product-detail-img-blurred-background {
+    height: 500px;
+    transform: scale(1.5);
+    -webkit-filter: blur(7px);
+    filter: blur(7px);
+}
+
+.product-detail-img {
+    height: 500px;
+    object-fit: scale-down;
+    z-index: 100000;
+    position: absolute;
+}
