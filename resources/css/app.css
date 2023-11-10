@@ -169,8 +169,9 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
 
 .search-results-img {
     max-height: 250px;
-    z-index: 100000;
+    z-index: 1;
     position: absolute;
+    object-fit: scale-down;
 }
 
 .product-detail-img-blurred-background {
@@ -183,6 +184,6 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
 .product-detail-img {
     height: 500px;
     object-fit: scale-down;
-    z-index: 100000;
+    z-index: 1;
     position: absolute;
 }

@@ -28,45 +28,13 @@
             <tr>
                 <td><b>{{ __('Current Cost') }}</b></td>
                 <td>
-                    @switch($product->dias_transcurridos)
-                        @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                            {{ toCurrency($product->costo, 'COP') }}
-                        @break
-
-                        @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                            {{ toCurrency($product->costo * 0.8, 'COP') }}
-                        @break
-
-                        @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                            {{ toCurrency($product->costo * 0.5, 'COP') }}
-                        @break
-
-                        @case($product->dias_transcurridos >= 90)
-                            {{ toCurrency($product->costo * 0.2, 'COP') }}
-                        @break
-                    @endswitch
+                    {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos) }}
                 </td>
             </tr>
             <tr>
                 <td><b>{{ __('Discount') }}</b></td>
                 <td>
-                    @switch($product->dias_transcurridos)
-                        @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                            {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(0) }}
-                        @break
-
-                        @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                            {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.2) / $product->costo) }}
-                        @break
-
-                        @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                            {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.5) / $product->costo) }}
-                        @break
-
-                        @case($product->dias_transcurridos >= 90)
-                            {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.8) / $product->costo) }}
-                        @break
-                    @endswitch
+                    {{ calculateDiscount($product->costo, $product->dias_transcurridos) }}
                 </td>
             </tr>
         </tbody>

@@ -15,7 +15,7 @@
             <ul class="navbar-nav me-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasWithBothOptions" role="button"
+                        <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button"
                             aria-controls="offcanvasWithBothOptions">
                             {{ __('Menu') }}
                         </a>
@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActive('search') }}"
-                        href="{{ route('categories') }}">{{ trans_choice(__('Category|Categories'), 1) }}</a>
+                        href="{{ route('categories') }}">{{ trans_choice( __('Category|Categories'), 2 ) }}</a>
                 </li>
             </ul>
 
@@ -143,10 +143,9 @@
                                 @csrf
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                            this.closest('form').submit();">
+                                    this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </a>
-
                             </form>
                         </ul>
                     </div>

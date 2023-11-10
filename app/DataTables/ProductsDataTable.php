@@ -87,36 +87,36 @@ class ProductsDataTable extends DataTable
                             }',
                         ],
                     ],
-                'initComplete' => 'function() { 
-                    var table = $( "#products-table" ).DataTable();
-                    table.columns().flatten().each( function ( colIdx ) {
-                        // Create the select list and search operation
-                        if(colIdx !== 0) {
-                            var select = $( "<select />" )
-                                .appendTo(
-                                    table.column( colIdx ).footer()
-                                )
-                                .on( "change", function () {
-                                    table
-                                        .column( colIdx )
-                                        .search( $( this ).val() )
-                                        .draw();
-                                }
-                            );
-                            select.append( $("<option value=\'\'>---</option>") )
-                            // Get the search data for the first column and add to the select list
-                            table
-                                .column( colIdx )
-                                .data()
-                                .sort()
-                                .unique()
-                                .each( function ( d ) {
-                                    if(d) { select.append( $( "<option value=" + d + ">" + d + "</option>" ) ); }
-                                } );
-                        }
+                    // 'initComplete' => 'function() { 
+                    //     var table = $( "#products-table" ).DataTable();
+                    //     table.columns().flatten().each( function ( colIdx ) {
+                    //         // Create the select list and search operation
+                    //         if(colIdx !== 0) {
+                    //             var select = $( "<select />" )
+                    //                 .appendTo(
+                    //                     table.column( colIdx ).footer()
+                    //                 )
+                    //                 .on( "change", function () {
+                    //                     table
+                    //                         .column( colIdx )
+                    //                         .search( $( this ).val() )
+                    //                         .draw();
+                    //                 }
+                    //             );
+                    //             select.append( $("<option value=\'\'>---</option>") )
+                    //             // Get the search data for the first column and add to the select list
+                    //             table
+                    //                 .column( colIdx )
+                    //                 .data()
+                    //                 .sort()
+                    //                 .unique()
+                    //                 .each( function ( d ) {
+                    //                     if(d) { select.append( $( "<option value=" + d + ">" + d + "</option>" ) ); }
+                    //                 } );
+                    //         }
 
-                    } );
-                }'
+                    //     } );
+                    // }'
                     // 'columnDefs' => [
                     //     ['responsivePriority' => 0, 'targets' => [0, 1, 2, 3, 4]],
                     //     ['responsivePriority' => 1, 'targets' => [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]

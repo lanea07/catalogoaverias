@@ -1,7 +1,7 @@
 <x-app-layout  :title="__('Products')">
 
     <div class="container mt-3">
-        {{ $dataTable->table([], true) }}
+        {{ $dataTable->table([], false) }}
     </div>
 
     @push('scripts')

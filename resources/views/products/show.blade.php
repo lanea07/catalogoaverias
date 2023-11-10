@@ -5,26 +5,39 @@
         <div class="row my-4" data-masonry='{"percentPosition": true }'>
             <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column">
                 @if ($images)
-                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
+
+                        <div class="carousel-indicators">
+                            @foreach ($images as $key => $image)
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
+                                    @if ($key === 0) class="active" aria-current="true" @endif aria-label="Slide {{ $key }}">
+                                </button>
+                            @endforeach
+
+                        </div>
+
                         <div class="carousel-inner rounded">
                             @foreach ($images as $key => $image)
                                 <div class="carousel-item @if ($key === 0) active @endif rounded">
-                                    <a type="button" class="h-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal"
-                                        data-bs-target="#images-modal" data-bs-img-path="{{ $image }}">
-                                        <img src="{{ $image }}" class="d-block w-100 rounded product-detail-img-blurred-background">
+                                    <a type="button" class="h-100 d-flex justify-content-center align-items-center"
+                                        data-bs-toggle="modal" data-bs-target="#images-modal"
+                                        data-bs-img-path="{{ $image }}">
+                                        <img src="{{ $image }}"
+                                            class="d-block w-100 rounded product-detail-img-blurred-background">
                                         <img src="{{ $image }}" class="d-block w-100 rounded product-detail-img">
                                     </a>
                                 </div>
                             @endforeach
                         </div>
+
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon bg-dark-subtle rounded" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon bg-dark-subtle rounded" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
@@ -135,23 +148,7 @@
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Current Cost') }}:
                                     <small class="fw-normal">
-                                        @switch($product->dias_transcurridos)
-                                            @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                                                {{ toCurrency($product->costo, 'COP') }}
-                                            @break
-
-                                            @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                                                {{ toCurrency($product->costo * 0.8, 'COP') }}
-                                            @break
-
-                                            @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                                                {{ toCurrency($product->costo * 0.5, 'COP') }}
-                                            @break
-
-                                            @case($product->dias_transcurridos >= 90)
-                                                {{ toCurrency($product->costo * 0.2, 'COP') }}
-                                            @break
-                                        @endswitch
+                                        {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos) }}
                                     </small>
                                 </p>
                             </div>
@@ -160,23 +157,7 @@
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Discount') }}:
                                     <small class="fw-normal">
-                                        @switch($product->dias_transcurridos)
-                                            @case($product->dias_transcurridos >= 0 && $product->dias_transcurridos <= 30)
-                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(0) }}
-                                            @break
-
-                                            @case($product->dias_transcurridos > 30 && $product->dias_transcurridos <= 60)
-                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.2) / $product->costo) }}
-                                            @break
-
-                                            @case($product->dias_transcurridos > 60 && $product->dias_transcurridos <= 90)
-                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.5) / $product->costo) }}
-                                            @break
-
-                                            @case($product->dias_transcurridos >= 90)
-                                                {{ NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format(($product->costo * 0.8) / $product->costo) }}
-                                            @break
-                                        @endswitch
+                                        {{ calculateDiscount($product->dias_transcurridos, $product->costo) }}
                                     </small>
                                 </p>
                             </div>
@@ -190,8 +171,19 @@
                         aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-6">
-                                <p class="fw-bold">{{ __('Ticket') }}: <small
-                                        class="fw-normal">{{ $product->ticket }}</small>
+                                <p class="fw-bold">{{ __('Ticket') }}:
+                                    @auth
+                                        <small class="fw-normal">
+                                            <a target="_blank"
+                                                href="https://360.flamingo.com.co/otrs/index.pl?Action=AgentTicketZoom;TicketNumber={{ $product->ticket }}"
+                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                                {{ $product->ticket }}
+                                            </a>
+                                        </small>
+                                    @endauth
+                                    @guest
+                                        <small class="fw-normal">{{ $product->ticket }}</small>
+                                    @endguest
                                 </p>
                             </div>
                             <div class="col-6">
@@ -223,7 +215,7 @@
                         <div class="btn-group">
                             <a class="btn btn-primary"
                                 href="{{ route('products.edit', $product) }}">{{ __('Edit') }}</a>
-                            <a class="btn btn-danger" href="#"
+                            <a class="btn btn-outline-danger" href="#"
                                 onclick="document.getElementById('delete-directorio').submit()">{{ __('Delete') }}</a>
                         </div>
                         <form class="d-none" id="delete-directorio" action="{{ route('products.destroy', $product) }}"
