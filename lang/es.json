@@ -1,5 +1,6 @@
 {
     "A new verification link has been sent to your email address.": "Un nuevo enlace de verificación ha sido enviado a tu correo electrónico.",
+    "A new verification link has been sent to the email address you provided during registration.": "Un nuevo enlace de verificación ha sido enviado a la dirección de correo electrónico que proporcionaste durante el registro.",
     "An error has occurred, please try again later": "Ha ocurrido un error, por favor intenta de nuevo más tarde",
     "Antiquity": "Antigüedad",
     "AppName": "Catálogo de Averías",
@@ -84,6 +85,8 @@
     "Queue": "Cola",
     "Reference": "Referencia",
     "Register": "Registrar",
+    "Remember me": "Recordarme",
+    "Resend Verification Email": "Reenviar Correo de Verificación",
     "Request succesfuly sent": "Solicitud enviada con éxito",
     "Save": "Guardar",
     "Saved.": "Guardado.",
@@ -94,6 +97,7 @@
     "Starting Date": "Fecha Inicio de Gestión",
     "Store": "Tienda",
     "Subcategory": "Subcategoría",
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "Gracias por registrarte! Antes de empezar, podrías verificar tu correo electrónico haciendo click en el enlace que te acabamos de enviar? Si no recibiste el correo, con gusto te enviaremos otro.",
     "Ticket": "Ticket",
     "Toggle lang": "Cambiar idioma",
     "Toggle theme": "Cambiar tema",

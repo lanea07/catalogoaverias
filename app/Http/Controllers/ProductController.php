@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('roles:Admin', ['except' => ['show']]);
+        $this->middleware('verified', ['except' => ['show']]);
     }
 
     /**

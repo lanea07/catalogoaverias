@@ -1,6 +1,6 @@
 @props(['title'])
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        <script src="/js/pre_render-scripts.js"></script>
         @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
     </head>
     <body class="bg-secondary-subtle container d-flex align-items-center justify-content-center min-vh-100">

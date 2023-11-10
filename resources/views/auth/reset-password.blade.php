@@ -8,7 +8,7 @@
         <!-- Email Address -->
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-            <label for="floatingInput">Email address</label>
+            <label for="floatingInput">{{ __('Email') }}</label>
             {{-- <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" /> --}}
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -17,7 +17,7 @@
         <!-- Password -->
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-            <label for="password">Password</label>
+            <label for="password">{{ __('Password') }}</label>
             {{-- <x-input-label for="password" :value="__('Password')" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" /> --}}
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -26,7 +26,7 @@
         <!-- Confirm Password -->
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation" name="password_confirmation">
-            <label for="password_confirmation">Password</label>
+            <label for="password_confirmation">{{ __('Password') }}</label>
             {{-- <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
