@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="d-flex flex-column overflow-auto">
+<body class="d-flex flex-column overflow-auto min-vh-100 vh-100">
     <x-bootstrap-default-svgs></x-bootstrap-default-svgs>
     @include('partials.navbar')
     @include('partials.offcanvas')
