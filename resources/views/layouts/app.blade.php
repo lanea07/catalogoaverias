@@ -1,6 +1,6 @@
 @props(['title'])
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
 
     <!-- Scripts -->
+    <script src="/js/pre_render-scripts.js"></script>
     @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
     @livewireStyles
 

@@ -80,7 +80,7 @@
                         id="bd-theme" type="button" aria-expanded="true" data-bs-toggle="dropdown"
                         data-bs-display="static" aria-label="Toggle theme (dark)">
                         <svg class="bi my-1 theme-icon-active">
-                            <use href="#moon-stars-fill"></use>
+                            <use href="#sun-fill"></use>
                         </svg>
                         <span class="d-lg-none ms-2" id="bd-theme-text">{{ __('Toggle theme') }}</span>
                     </button>

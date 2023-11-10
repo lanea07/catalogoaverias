@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 
 class Lang
@@ -17,17 +17,14 @@ class Lang
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (isset($request->lang)) {
-            request()->session()->put('locale', $request->lang);
-            App::setLocale($request->lang);
+        if (!empty(Cookie::get('lang'))) {
+            request()->session()->put('locale', Cookie::get('lang'));
+            App::setLocale(Cookie::get('lang'));
         } else {
-            if (request()->session()->has('locale')) {
-                App::setLocale(session('locale'));
-            } else {
-                request()->session()->put('locale', config('app.locale'));
-                App::setLocale(config('app.locale'));
-            }
+            request()->session()->put('locale', config('app.locale'));
+            App::setLocale(config('app.locale'));
         }
-        return $next($request);
+
+        return $next($request)->withCookie(Cookie::make('lang', App::getLocale()));
     }
 }

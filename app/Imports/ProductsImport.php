@@ -7,13 +7,14 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithUpsertColumns;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow, WithUpserts, WithCustomValueBinder
+class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow, WithUpserts, WithCustomValueBinder, WithUpsertColumns
 {
 
     use Importable;
@@ -82,5 +83,32 @@ class ProductsImport extends DefaultValueBinder implements ToModel, WithStartRow
 
         // else return default behavior
         return parent::bindValue($cell, $value);
+    }
+
+    /**
+     * @return array
+     */
+    public function upsertColumns()
+    {
+        return [
+            'ticket',
+            'queue',
+            'ean',
+            'negocio',
+            'departamento',
+            'grupo',
+            'categoria',
+            'subcategoria',
+            'descripcion',
+            'referencia',
+            'marca',
+            'medida',
+            'color',
+            'costo',
+            'nit_proveedor',
+            'razon_social_proveedor',
+            'fecha_inicio_gestion',
+            'dias_transcurridos'
+        ];
     }
 }
