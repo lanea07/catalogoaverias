@@ -187,3 +187,6 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
     z-index: 1;
     position: absolute;
 }
+footer {
+    bottom: 0px;
+}
