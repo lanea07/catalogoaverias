@@ -15,7 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
     </head>
-    <body class="bg-secondary-subtle container d-flex align-items-center justify-content-center">
+    <body class="bg-secondary-subtle container d-flex align-items-center justify-content-center min-vh-100">
         <div class="rounded shadow bg-body-tertiary">
             <div class="py-5 d-flex align-items-center justify-content-center">
                     <x-application-logo height="80"/>
