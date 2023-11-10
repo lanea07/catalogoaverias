@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <h1>{{ $product->descripcion }}</h1>
         <div class="row my-4" data-masonry='{"percentPosition": true }'>
-            <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column">
+            <div class="col-12 col-md-4 mb-sm-3 d-flex align-items-center flex-column p-3">
                 @if ($images)
                     <div id="carouselExampleControls" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
 
@@ -53,7 +53,7 @@
                 @endif
             </div>
 
-            <div class="col-12 col-md-8 shadow-sm product-detail p-3 bg-body-tertiary">
+            <div class="col-12 col-md-8 shadow-sm product-detail p-3">
                 <ul class="nav nav-tabs" id="product-detail" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
@@ -67,7 +67,7 @@
                             aria-selected="false">{{ __('Associated Ticket') }}</button>
                     </li>
                 </ul>
-                <div class="tab-content" id="product-detail-content">
+                <div class="tab-content bg-body-tertiary rounded-top-0 rounded-3 mb-3" id="product-detail-content">
                     <div class="tab-pane fade mt-2 show active" id="home-tab-pane" role="tabpanel"
                         aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
