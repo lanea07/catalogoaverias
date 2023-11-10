@@ -32,7 +32,7 @@
     @endif
 
     <!-- Page Content -->
-    <main class=" flex-grow-0 overflow-auto">
+    <main class="flex-fill overflow-auto">
         {{ $slot }}
     </main>
 
