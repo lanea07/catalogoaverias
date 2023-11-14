@@ -136,8 +136,8 @@
             <div class="img-container mx-2 mb-2">
                 <img class="" src="{{ Storage::disk('google')->url($image) }}" alt="" height=150>
                 <div class="overlay-view">
-                    <button type="button" class="icon btn text-light" data-bs-toggle="modal" data-bs-target="#image-viewer"
-                        data-bs-path="{{ Storage::disk('google')->url($image) }}" title="{{ __('View') }}">
+                    <button type="button" class="icon btn text-light" data-bs-toggle="modal" data-bs-target="#images-modal"
+                        data-bs-img-path="{{ Storage::disk('google')->url($image) }}" title="{{ __('View') }}">
                         <i class="fa-regular fa-eye"></i>
                     </button>
                 </div>
@@ -163,18 +163,20 @@
 
 <x-primary-button>{{ $btnText }}</x-primary-button>
 
-{{-- Image Viewer Modal --}}
-<div class="modal fade" id="image-viewer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="images-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img class="img-thumbnail" src="" alt="">
+                <img src="" class="w-100 img-thumbnail">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">{{ __('Close') }}</button>
             </div>
         </div>
     </div>
