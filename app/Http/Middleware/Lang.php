@@ -25,6 +25,6 @@ class Lang
             App::setLocale(config('app.locale'));
         }
 
-        return $next($request)->withCookie(Cookie::make('lang', App::getLocale()));
+        return $next($request);
     }
 }

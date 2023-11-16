@@ -44,6 +44,13 @@ if (!function_exists('toCurrency')) {
         return request()->routeIs($routeName) ? 'active' : '';
     }
 
+    /**
+     * Get first image from google drive
+     * 
+     * @param string $path
+     * 
+     * @return string
+     */
     function getGooglefirstImage($path)
     {
         if ($path && Storage::disk('google')->exists($path)) {
@@ -86,6 +93,14 @@ if (!function_exists('toCurrency')) {
         return $discount;
     }
 
+    /**
+     * Calculate cost with discount based on days passed
+     * 
+     * @param integer $cost
+     * @param integer $days_passed
+     * 
+     * @return string
+     */
     function calculateCostWithDiscount($cost, $days_passed)
     {
         $newCost = 0;

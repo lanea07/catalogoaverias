@@ -152,12 +152,19 @@
                                     </small>
                                 </p>
                             </div>
+                            <div class="col-6">
+                                <p class="fw-bold">{{ __('Original Price') }}:
+                                    <small class="fw-normal">
+                                        {{ toCurrency($product->costo, "COP") }}
+                                    </small>
+                                </p>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Discount') }}:
                                     <small class="fw-normal">
-                                        {{ calculateDiscount($product->dias_transcurridos, $product->costo) }}
+                                        {{ calculateDiscount($product->costo, $product->dias_transcurridos) }}
                                     </small>
                                 </p>
                             </div>
