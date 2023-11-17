@@ -76,6 +76,7 @@
     </div>
 </div>
 
+<p><a target="_blank" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="https://www.flamingo.com.co/institucional/politica-tratamiento-datos" class="alert-link">{{ __('Data Processing Policies') }}</a></p>    
 
 <input type="hidden" name="id" value="{{ $product->id }}">
 <x-primary-button>{{ $btnText }}</x-primary-button>
