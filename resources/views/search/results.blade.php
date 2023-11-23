@@ -26,10 +26,10 @@
                                     <b>{{ __('Store') }}: </b>{{ $product->queue }}<br>
                                     <b>{{ __('Original Price') }}: </b>{{ toCurrency($product->costo, "COP") }}<br>
                                     <b>{{ __('Current Cost') }}: </b>
-                                    {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos) }}
+                                    {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                                     <br>
                                     <b>{{ __('Discount') }}: </b>
-                                    {{ calculateDiscount($product->costo, $product->dias_transcurridos) }}
+                                    {{ calculateDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                                     <br>
                                     <b>{{ __('Warranty Expiration Date') }}: </b>{{ $product->garantia_expira }}
                                 </p>

@@ -123,6 +123,14 @@
     <label for="garantia_expira">{{ __('Warranty Expiration Date') }}*</label>
 </div>
 
+{{-- custom_descuento --}}
+<div class="form-floating mb-3">
+    <input type="number" class="form-control @error('custom_descuento') is-invalid @else border-0 @enderror"
+        id="custom_descuento" placeholder="custom_descuento" name="custom_descuento"
+        value="{{ old('custom_descuento', $product->custom_descuento) }}">
+    <label for="custom_descuento">{{ __('Custom Discount') }}</label>
+</div>
+
 <div class="form-floating mb-3">
     <textarea type="number" class="form-control @error('observaciones') is-invalid @else border-0 @enderror"
         id="observaciones" placeholder="observaciones" name="observaciones">{{ old('observaciones', $product->observaciones) }}</textarea>

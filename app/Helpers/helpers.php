@@ -69,9 +69,12 @@ if (!function_exists('toCurrency')) {
      * 
      * @return string
      */
-    function calculateDiscount($cost, $days_passed): string
+    function calculateDiscount($cost, $days_passed, $custom_discount): string
     {
         $discount = 0;
+        if ($custom_discount) {
+            return $discount = NumberFormatter::create('es_CO', NumberFormatter::PERCENT)->format($custom_discount / 100);
+        }
         switch ($days_passed) {
 
             case ($days_passed >= 0 && $days_passed <= 30):
@@ -98,12 +101,16 @@ if (!function_exists('toCurrency')) {
      * 
      * @param integer $cost
      * @param integer $days_passed
+     * @param integer $custom_discount
      * 
      * @return string
      */
-    function calculateCostWithDiscount($cost, $days_passed)
+    function calculateCostWithDiscount($cost, $days_passed, $custom_discount)
     {
         $newCost = 0;
+        if ($custom_discount) {
+            return $newCost = toCurrency($cost * (1 - $custom_discount / 100), "COP");
+        }
         switch ($days_passed) {
             case ($days_passed >= 0 && $days_passed <= 30):
                 $newCost = toCurrency($cost, "COP");

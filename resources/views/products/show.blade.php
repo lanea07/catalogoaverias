@@ -148,7 +148,7 @@
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Current Cost') }}:
                                     <small class="fw-normal">
-                                        {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos) }}
+                                        {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                                     </small>
                                 </p>
                             </div>
@@ -164,7 +164,7 @@
                             <div class="col-6">
                                 <p class="fw-bold">{{ __('Discount') }}:
                                     <small class="fw-normal">
-                                        {{ calculateDiscount($product->costo, $product->dias_transcurridos) }}
+                                        {{ calculateDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                                     </small>
                                 </p>
                             </div>

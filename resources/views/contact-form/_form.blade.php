@@ -28,13 +28,13 @@
             <tr>
                 <td><b>{{ __('Current Cost') }}</b></td>
                 <td>
-                    {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos) }}
+                    {{ calculateCostWithDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                 </td>
             </tr>
             <tr>
                 <td><b>{{ __('Discount') }}</b></td>
                 <td>
-                    {{ calculateDiscount($product->costo, $product->dias_transcurridos) }}
+                    {{ calculateDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                 </td>
             </tr>
         </tbody>

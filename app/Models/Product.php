@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Casts\GooglePath;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +30,7 @@ class Product extends Model
         'dias_transcurridos',
         'img_path',
         'garantia_expira',
-        'observaciones'
+        'observaciones',
+        'custom_descuento',
     ];
 }

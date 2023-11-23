@@ -42,7 +42,8 @@ class UpdateProductRequest extends FormRequest
             'dias_transcurridos' => 'required|numeric|gte:0',
             'images.*' => 'mimes:jpeg,png,jpg,gif,svg',
             'garantia_expira' => 'nullable',
-            'observaciones' => 'nullable'
+            'observaciones' => 'nullable',
+            'custom_descuento' => 'nullable',
         ];
     }
 }
