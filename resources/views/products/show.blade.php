@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 <div class="tab-content bg-body-tertiary rounded-top-0 rounded-3 mb-3" id="product-detail-content">
-                    <div class="tab-pane fade mt-2 show active" id="home-tab-pane" role="tabpanel"
+                    <div class="tab-pane fade p-3 show active" id="home-tab-pane" role="tabpanel"
                         aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-6">
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade mt-2" id="profile-tab-pane" role="tabpanel"
+                    <div class="tab-pane fade p-3" id="profile-tab-pane" role="tabpanel"
                         aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-6">

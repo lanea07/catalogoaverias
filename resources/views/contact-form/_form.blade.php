@@ -37,6 +37,12 @@
                     {{ calculateDiscount($product->costo, $product->dias_transcurridos, $product->custom_descuento) }}
                 </td>
             </tr>
+            <tr>
+                <td><b>{{ __('Warranty Expiration Date') }}</b></td>
+                <td>
+                    {{ $product->garantia_expira }}
+                </td>
+            </tr>
         </tbody>
     </table>
 
