@@ -31,7 +31,18 @@ class SearchProduct extends Component
             try {
                 $this->error = "";
                 $this->categories = [];
-                $this->categories = Product::select('categoria')->where('categoria', 'like', '%' . $this->query . '%')->distinct('categoria')->get()->toArray();
+                $this->categories = Product::where(function ($q) {
+                    $q->where('categoria', 'like', '%' . $this->query . '%')
+                        ->orWhere('descripcion', 'like', '%' . $this->query . '%');
+                })
+                    ->distinct('categoria')
+                    ->get(['categoria', 'descripcion'])
+                    ->toArray();
+                $this->categories = array_map(function ($object) {
+                    $object = preg_replace('(' . $this->query . ')', '<mark>' . $this->query . '</mark>', $object);
+                    $object = preg_replace('(' . strtoupper($this->query) . ')', '<mark>' . strtoupper($this->query) . '</mark>', $object);
+                    return $object;
+                }, $this->categories);
             } catch (\Throwable $th) {
                 $this->error = __('An error has occurred, please try again later');
             }

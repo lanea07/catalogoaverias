@@ -12,11 +12,14 @@ class SearchController extends Controller
      * 
      * @param string $string
      */
-    public function search(string $q)
+    public function search(string $query)
     {
-        $allProducts = Product::where('categoria', 'like', '%' . $q . '%')->get();
+        $allProducts = Product::where(function ($q) use ($query) {
+            $q->where('categoria', 'like', '%' . $query . '%')
+                ->orWhere('descripcion', 'like', '%' . $query . '%');
+        })->get();
         return view('search.results', [
-            'query' => $q,
+            'query' => $query,
             'allProducts' => $allProducts
         ]);
     }
