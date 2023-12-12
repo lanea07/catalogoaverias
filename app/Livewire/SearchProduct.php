@@ -39,8 +39,12 @@ class SearchProduct extends Component
                     ->get(['categoria', 'descripcion'])
                     ->toArray();
                 $this->categories = array_map(function ($object) {
-                    $object = preg_replace('(' . $this->query . ')', '<mark>' . $this->query . '</mark>', $object);
-                    $object = preg_replace('(' . strtoupper($this->query) . ')', '<mark>' . strtoupper($this->query) . '</mark>', $object);
+                    $object = array_merge($object, ['htmlTag' => $object]);
+                    $object['htmlTag'] =  array_map(function ($innerObject) {
+                        $innerObject = preg_replace('(' . $this->query . ')', '<mark>' . $this->query . '</mark>', $innerObject);
+                        $innerObject = preg_replace('(' . strtoupper($this->query) . ')', '<mark>' . strtoupper($this->query) . '</mark>', $innerObject);
+                        return $innerObject;
+                    }, $object['htmlTag']);
                     return $object;
                 }, $this->categories);
             } catch (\Throwable $th) {

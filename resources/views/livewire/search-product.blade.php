@@ -15,7 +15,7 @@
                             @forelse ($categories as $category)
                                 <li wire:click="search('{{ $category['categoria'] }}')"
                                     class="list-group-item link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                    <small>Categoría: </small>{!! $category['categoria'] !!} | <small>Descripción: </small>{!! $category['descripcion'] !!}
+                                    <small>Categoría: </small>{!! $category['htmlTag']['categoria'] !!} | <small>Descripción: </small>{!! $category['htmlTag']['descripcion'] !!}
                                 </li>
                             @empty
                                 @if ($error)
