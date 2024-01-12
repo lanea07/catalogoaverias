@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__ . '/auth.php';
+
 Route::get('/', function () {
     return view('index');
 })->name('home');
@@ -28,23 +31,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::get('/products/massive-upload', [ProductController::class, 'massiveUpload'])->name('massive-upload');
     Route::post('/products/process-massive-upload', [ProductController::class, 'processMassiveUpload']);
     Route::get('/products/delete-image', [ProductController::class, 'deleteImage']);
-});
 
-require __DIR__ . '/auth.php';
+    Route::resources([
+        'roles' => RoleController::class
+    ]);
+});
 
 Route::get('search/{q}', [SearchController::class, 'search'])->name('search');
 Route::get('categories', [SearchController::class, 'categories'])->name('categories');
-Route::resources([
-    'products' => ProductController::class
-]);
 Route::get('/set-locale/{lang}', [LangController::class, 'setLocale'])->name('set-locale');
 Route::get('/contact/{product}', [ContactController::class, 'view']);
 Route::post('/contact', [ContactController::class, 'store']);
 
+/**
+ * Products controller is not guarded by middleware here since it is applied in the controller's constructor
+ */
+Route::resources([
+    'products' => ProductController::class
+]);
 
 // Route::get('/sendmail', function (Request $request) {
 //     $ip = $request->ip();

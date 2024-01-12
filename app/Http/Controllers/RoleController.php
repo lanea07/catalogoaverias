@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\RolesDataTable;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -11,15 +12,15 @@ class RoleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('roles:administrador', ['except' => ['index', 'show']]);
+        //
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(RolesDataTable $dataTable)
     {
-        //
+        return $dataTable->render('roles.index');
     }
 
     /**
@@ -27,7 +28,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create', [
+            'role' => new Role()
+        ]);
     }
 
     /**
@@ -35,7 +38,18 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $this->authorize('create', Role::class);
+        $role = $request->validated();
+        try {
+            $role = Role::create($role);
+        } catch (\Throwable $th) {
+            return redirect()->route('roles.create', [
+                'role' => $role
+            ])->with('status', $th->getMessage());
+        }
+        return redirect()->route('roles.show', [
+            'role' => $role->id
+        ])->with('status', __('Saved.'));
     }
 
     /**
@@ -43,7 +57,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.show', [
+            'role' => $role
+        ]);
     }
 
     /**
@@ -51,7 +67,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', [
+            'role' => $role
+        ]);
     }
 
     /**
@@ -59,7 +77,19 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        $this->authorize('update', $role);
+        $validated = $request->validated();
+
+        try {
+            $role = tap($role)->update($validated);
+        } catch (\Throwable $th) {
+            return redirect()->route('roles.create', [
+                'role' => $role
+            ])->with('status', $th->getMessage());
+        }
+        return view('roles.show', [
+            'role' => $role,
+        ]);
     }
 
     /**
@@ -67,6 +97,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        return abort(403, 'Unauthorized action.');
     }
 }

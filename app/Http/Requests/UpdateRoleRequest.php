@@ -11,7 +11,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check() && auth()->user()->isAdmin();
     }
 
     /**
@@ -22,7 +22,18 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'valid_id' => 'required|boolean',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => __('The name is required.'),
+            'name.unique' => __('The name is already taken.'),
+            'valid_id.required' => __('The valid_id is required.'),
+            'valid_id.boolean' => __('The valid_id must be a boolean value.'),
         ];
     }
 }

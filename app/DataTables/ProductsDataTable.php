@@ -146,7 +146,7 @@ class ProductsDataTable extends DataTable
             Column::make('negocio')->title(__('Business Unit')),
             Column::make('departamento')->title(__('Department')),
             Column::make('grupo')->title(__('Group')),
-            Column::make('categoria')->title(__('Category')),
+            Column::make('categoria')->title(trans_choice('Category|Categories', 1)),
             Column::make('subcategoria')->title(__('Subcategory')),
             Column::make('descripcion')->title(__('Description')),
             Column::make('referencia')->title(__('Reference')),
