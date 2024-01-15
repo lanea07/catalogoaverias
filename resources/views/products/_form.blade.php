@@ -142,13 +142,13 @@
     <div class="d-flex overflow-auto">
         @forelse (Storage::disk('google')->files($product->img_path) as $image)
             <div class="img-container mx-2 mb-2">
-                <img class="" src="{{ Storage::disk('google')->url($image) }}" alt="" height=150>
-                <div class="overlay-view">
+                <img class="" src="data:image/png;base64, {{ base64_encode(Storage::disk('google')->get($image)) }}" alt="" height=150>
+                {{-- <div class="overlay-view">
                     <button type="button" class="icon btn text-light" data-bs-toggle="modal" data-bs-target="#images-modal"
-                        data-bs-img-path="{{ Storage::disk('google')->url($image) }}" title="{{ __('View') }}">
+                        data-bs-img-path="{{ Storage::disk('google')->get($image) }}" title="{{ __('View') }}">
                         <i class="fa-regular fa-eye"></i>
                     </button>
-                </div>
+                </div> --}}
                 <div class="overlay-delete">
                     <a href="/products/delete-image?product_id={{ $product->id }}&imgPath={{ $image }}"
                         class="icon link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" title="{{ __('Delete') }}">
@@ -171,7 +171,7 @@
 
 <x-primary-button>{{ $btnText }}</x-primary-button>
 
-<!-- Modal -->
+{{-- <!-- Modal -->
 <div class="modal fade" id="images-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -188,4 +188,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

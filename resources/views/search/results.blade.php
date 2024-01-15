@@ -13,8 +13,14 @@
                         <div class="card">
                             {{-- <img src="https://placehold.co/300x180" class="card-img-top" alt="..."> --}}
                             <div class="d-flex justify-content-center align-items-center search-results-img-container">
-                                <img src="{{ getGooglefirstImage($product->img_path) }}" class="search-results-img-blurred-background" alt="...">
-                                <img src="{{ getGooglefirstImage($product->img_path) }}" class="search-results-img w-100" alt="...">
+
+                                @if (Storage::disk('google')->exists($product->img_path))
+                                    <img src="data:image/png;base64, {{ getGooglefirstImage($product->img_path) }}" class="search-results-img-blurred-background" alt="...">
+                                    <img src="data:image/png;base64, {{ getGooglefirstImage($product->img_path) }}" class="search-results-img w-100" alt="...">
+                                @else
+                                    <img src="{{ url('/images/No_image_available.png') }}" class="search-results-img-blurred-background" alt="...">
+                                    <img src="{{ url('/images/No_image_available.png') }}" class="search-results-img w-100" alt="...">
+                                @endif
                             </div>
                             <div class="card-body bg-body-tertiary">
                                 <h5 class="card-title">{{ $product->descripcion }}</h5>

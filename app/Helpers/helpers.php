@@ -55,10 +55,9 @@ if (!function_exists('toCurrency')) {
     {
         if ($path && Storage::disk('google')->exists($path)) {
             $files = Storage::disk('google')->files($path);
-            return Storage::disk('google')->url($files[0]);
+            return base64_encode(Storage::disk('google')->get($files[0]));
         }
         return url('/images/No_image_available.png');
-        // return 'https://placehold.co/300x180';
     }
 
     /**

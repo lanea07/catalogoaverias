@@ -75,7 +75,7 @@ class ProductController extends Controller
         if (Storage::disk('google')->exists("catalogoaverias/{$product['ticket']}")) {
             $images = Storage::disk('google')->files($product->img_path);
             foreach ($images as $key => $image) {
-                $images[$key] = Storage::disk('google')->url($image);
+                $images[$key] = base64_encode(Storage::disk('google')->get($image));
             }
         } else {
             $images = [];

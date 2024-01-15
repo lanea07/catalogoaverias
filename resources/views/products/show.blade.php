@@ -22,9 +22,9 @@
                                     <a type="button" class="h-100 d-flex justify-content-center align-items-center"
                                         data-bs-toggle="modal" data-bs-target="#images-modal"
                                         data-bs-img-path="{{ $image }}">
-                                        <img src="{{ $image }}"
+                                        <img src="data:image/png;base64, {{ $image }}"
                                             class="d-block w-100 rounded product-detail-img-blurred-background">
-                                        <img src="{{ $image }}" class="d-block w-100 rounded product-detail-img">
+                                        <img src="data:image/png;base64, {{ $image }}" class="d-block w-100 rounded product-detail-img">
                                     </a>
                                 </div>
                             @endforeach
