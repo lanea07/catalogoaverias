@@ -8,7 +8,7 @@
   <div class="offcanvas-body">
     <div class="accordion " id="accordion">
       
-      @if (auth()->user()->hasRoles(['Admin','Supervisor de Catálogo']))
+      @if (auth()->user() && auth()->user()->hasRoles(['Admin','Supervisor de Catálogo']))
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
@@ -27,7 +27,7 @@
         </div>
       @endif
       
-      @if (auth()->user()->hasRoles(['Admin']))
+      @if (auth()->user() && auth()->user()->hasRoles(['Admin']))
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRoles" aria-expanded="false" aria-controls="collapseRoles">
@@ -45,7 +45,7 @@
         </div>
       @endif
 
-      @if (auth()->user()->hasRoles(['Admin']))
+      @if (auth()->user() && auth()->user()->hasRoles(['Admin']))
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">

@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
             return redirect()->intended();
         } catch (\Throwable $th) {
-            return redirect()->route('login')->with('status', __('An error has occurred, please try again later'));
+            return redirect()->route('login')->with('status', $th->getMessage());
         }
     }
 
