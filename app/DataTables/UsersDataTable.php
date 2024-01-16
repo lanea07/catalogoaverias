@@ -27,7 +27,9 @@ class UsersDataTable extends DataTable
                 return $role->updated_at->timezone('America/Bogota');
             })
             ->addColumn('role', function ($user) {
-                return $user->roles->pluck('name')->implode(', ');
+            return $user->roles->map(function ($roles) {
+                return $roles->name;
+            })->implode('<br>');
             })
             ->setRowId('id');
     }
@@ -37,7 +39,7 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->with(['roles'])->newQuery();
     }
 
     /**
@@ -76,10 +78,10 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name')->title(__('Name')),
             Column::make('email')->title(__('Email')),
-            Column::make('role')->title(trans_choice('Role|Roles', 1)),
-            Column::make('created_at')->title(__('Created at')),
-            Column::make('updated_at')->title(__('Updated at')),
-            Column::make(__('Options'))->render('\'<a class="btn btn-sm btn-outline-warning" href="users/\' + full.id + \'">Detalles</a>\''),
+            Column::make('role')->title(trans_choice('Role|Roles', 1))->name('roles.name'),
+            Column::make('created_at')->title(__('Created at'))->searchable(false)->orderable(false),
+            Column::make('updated_at')->title(__('Updated at'))->searchable(false)->orderable(false),
+            Column::make(__('Options'))->render('\'<a class="btn btn-sm btn-outline-warning" href="users/\' + full.id + \'">Detalles</a>\'')->searchable(false)->orderable(false),
         ];
     }
 
