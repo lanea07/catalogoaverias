@@ -121,7 +121,7 @@ class ProductController extends Controller
                 $images[$key] = Storage::disk('google')->url($image);
             }
         } catch (\Throwable $th) {
-            return redirect()->route('products.create', [
+            return redirect()->route('products.edit', [
                 'product' => $product
             ])->with('status', $th->getMessage());
         }

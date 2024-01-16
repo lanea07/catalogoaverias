@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,10 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'email' => 'required|email:rfc,dns|unique:users,email,' . $this->user->id,
+            'password' => 'nullable',
+            'role' => 'required',
             'valid_id' => 'required|boolean',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'name.required' => __('The name is required.'),
-            'name.unique' => __('The name is already taken.'),
-            'valid_id.required' => __('The valid_id is required.'),
-            'valid_id.boolean' => __('The valid_id must be a boolean value.'),
         ];
     }
 }

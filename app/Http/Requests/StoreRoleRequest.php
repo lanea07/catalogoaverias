@@ -11,7 +11,7 @@ class StoreRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check() && auth()->user()->isAdmin();
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:roles,name',
+            'valid_id' => 'required|boolean',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => __('The name is required.'),
+            'name.unique' => __('The name is already taken.'),
+        ];
+    }
+
 }
