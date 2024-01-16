@@ -77,10 +77,9 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        $this->authorize('update', $role);
-        $validated = $request->validated();
-
         try {
+            $this->authorize('update', $role);
+            $validated = $request->validated();
             $role = tap($role)->update($validated);
         } catch (\Throwable $th) {
             return redirect()->route('roles.create', [
