@@ -14,7 +14,7 @@
                             {{-- <img src="https://placehold.co/300x180" class="card-img-top" alt="..."> --}}
                             <div class="d-flex justify-content-center align-items-center search-results-img-container">
 
-                                @if (Storage::disk('google')->exists($product->img_path))
+                                @if ($product->img_path && Storage::disk('google')->exists($product->img_path))
                                     <img src="data:image/png;base64, {{ getGooglefirstImage($product->img_path) }}" class="search-results-img-blurred-background" alt="...">
                                     <img src="data:image/png;base64, {{ getGooglefirstImage($product->img_path) }}" class="search-results-img w-100" alt="...">
                                 @else
