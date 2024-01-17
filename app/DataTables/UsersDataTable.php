@@ -20,11 +20,11 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('created_at', function ($role) {
-                return $role->created_at->timezone('America/Bogota');
+            ->editColumn('created_at', function ($user) {
+                return $user->created_at && $user->created_at->timezone('America/Bogota');
             })
-            ->editColumn('updated_at', function ($role) {
-                return $role->updated_at->timezone('America/Bogota');
+            ->editColumn('updated_at', function ($user) {
+                return $user->created_at && $user->updated_at->timezone('America/Bogota');
             })
             ->addColumn('role', function ($user) {
             return $user->roles->map(function ($roles) {
@@ -78,7 +78,7 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name')->title(__('Name')),
             Column::make('email')->title(__('Email')),
-            Column::make('role')->title(trans_choice('Role|Roles', 1))->name('roles.name'),
+            Column::make('role')->title(trans_choice('Role|Roles', 1))->name('roles.name')->orderable(false),
             Column::make('created_at')->title(__('Created at'))->searchable(false)->orderable(false),
             Column::make('updated_at')->title(__('Updated at'))->searchable(false)->orderable(false),
             Column::make(__('Options'))->render('\'<a class="btn btn-sm btn-outline-warning" href="users/\' + full.id + \'">Detalles</a>\'')->searchable(false)->orderable(false),
