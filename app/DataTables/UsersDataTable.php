@@ -21,10 +21,10 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('created_at', function ($user) {
-                return $user->created_at && $user->created_at->timezone('America/Bogota');
+            return $user->created_at ?? $user->created_at->timezone('America/Bogota');
             })
             ->editColumn('updated_at', function ($user) {
-                return $user->created_at && $user->updated_at->timezone('America/Bogota');
+            return $user->created_at ?? $user->updated_at->timezone('America/Bogota');
             })
             ->addColumn('role', function ($user) {
             return $user->roles->map(function ($roles) {
