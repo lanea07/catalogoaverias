@@ -97,7 +97,9 @@ if ( exampleModal ) {
         if ( storedLang ) {
             return storedLang
         }
-
+        if ( getCookie( 'lang' ) !== '' ) {
+            return getCookie( 'lang' );
+        }
         return navigator.language === 'es' ? 'es' : 'en'
     }
 
@@ -164,7 +166,8 @@ function setCookie ( cname, cvalue ) {
 
 function getCookie ( cname ) {
     let name = cname + "=";
-    let ca = document.cookie.split( ';' );
+    let decodedCookie = decodeURIComponent( document.cookie );
+    let ca = decodedCookie.split( ';' );
     for ( let i = 0; i < ca.length; i++ ) {
         let c = ca[ i ];
         while ( c.charAt( 0 ) == ' ' ) {
@@ -174,5 +177,6 @@ function getCookie ( cname ) {
             return c.substring( name.length, c.length );
         }
     }
+
     return "";
 }

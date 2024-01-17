@@ -20,11 +20,14 @@ class Lang
         if (!empty(Cookie::get('lang'))) {
             request()->session()->put('locale', Cookie::get('lang'));
             App::setLocale(Cookie::get('lang'));
+            $cookie = cookie('lang', Cookie::get('lang'));
         } else {
             request()->session()->put('locale', config('app.locale'));
             App::setLocale(config('app.locale'));
+            $cookie = cookie('lang', config('app.locale'), 0, null, null, false, false);
+            return $next($request)->withCookie($cookie);
         }
-
         return $next($request);
+
     }
 }
