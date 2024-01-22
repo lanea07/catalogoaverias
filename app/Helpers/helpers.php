@@ -33,6 +33,9 @@ if (!function_exists('toCurrency')) {
         $formattedNumber = $formatter->format($value);
         return $formattedNumber;
     };
+}
+
+if (!function_exists('setActive')) {
 
     /**
      * Set active class if route is active
@@ -43,6 +46,9 @@ if (!function_exists('toCurrency')) {
     {
         return request()->routeIs($routeName) ? 'active' : '';
     }
+}
+
+if (!function_exists('getGoogleFirstImage')) {
 
     /**
      * Get first image from google drive
@@ -59,6 +65,9 @@ if (!function_exists('toCurrency')) {
         }
         return url('/images/No_image_available.png');
     }
+}
+
+if (!function_exists('calculateDiscount')) {
 
     /**
      * Calculate discount based on days passed
@@ -94,6 +103,9 @@ if (!function_exists('toCurrency')) {
         }
         return $discount;
     }
+}
+
+if (!function_exists('calculateCostWithDiscount')) {
 
     /**
      * Calculate cost with discount based on days passed
