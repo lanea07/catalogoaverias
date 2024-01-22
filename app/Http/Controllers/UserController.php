@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -42,6 +43,7 @@ class UserController extends Controller
             $validated = $request->validated();
             $user = User::create($validated);
             $user->roles()->sync($validated['role']);
+            event(new Registered($user));
         } catch (\Throwable $th) {
             return redirect()
                 ->route('users.create',)
