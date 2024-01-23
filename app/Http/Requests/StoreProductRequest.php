@@ -11,7 +11,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->isAdmin();
+        return auth()->user()->hasRoles(['Admin', 'Supervisor de Catálogo']);
     }
 
     /**
