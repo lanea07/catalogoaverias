@@ -29,7 +29,7 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isAdmin();
+        return $user->hasRoles(['Admin', 'Supervisor de Catálogo']);
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): bool
     {
-        return $user->isAdmin();
+        return $user->hasRoles(['Admin', 'Supervisor de Catálogo']);
     }
 
     /**
