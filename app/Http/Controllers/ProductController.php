@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Imports\ProductsImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -121,6 +122,7 @@ class ProductController extends Controller
                 $images[$key] = Storage::disk('google')->url($image);
             }
         } catch (\Throwable $th) {
+            Log::channel('stack')->error($th);
             return redirect()->route('products.edit', [
                 'product' => $product
             ])->with('status', $th->getMessage());
