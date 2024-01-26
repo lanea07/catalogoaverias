@@ -119,7 +119,7 @@ class ProductController extends Controller
             $product = tap($product)->update($validated);
             $images = Storage::disk('google')->files($product->img_path);
             foreach ($images as $key => $image) {
-                $images[$key] = Storage::disk('google')->url($image);
+                $images[$key] = Storage::disk('google')->get($image);
             }
         } catch (\Throwable $th) {
             Log::channel('stack')->error($th);
