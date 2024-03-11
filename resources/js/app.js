@@ -20,6 +20,6 @@ if ( exampleModal ) {
         const button = event.relatedTarget
         const recipient = button.getAttribute( 'data-bs-img-path' )
         const modalImage = exampleModal.querySelector( '.modal-body img' )
-        modalImage.src = recipient
-    } )
+        modalImage.src = "data:image/png;base64," + recipient
+    } );
 }
